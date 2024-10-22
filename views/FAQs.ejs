@@ -1,0 +1,91 @@
+<style>
+    .container{
+        width: 100vw;
+        padding: 2.5vw 10vw;
+        display: flex;
+        flex-direction: column;
+        gap: 2.5vw;
+    }
+    .section{
+        box-shadow: 1px 1px 2px gray;
+        border-radius: 5px;
+    }
+    h3{
+        border-radius: 5px 5px 0px 0px;
+        background-color: pink;
+        height: 6vh;
+        display: flex;
+        align-items: center;
+        padding-left: 1vw;
+        color: #BF222B;
+    }
+    .section p{
+        border-radius: 0px 0px 5px 5px;
+        padding:1vw 1vw 0vw 1vw;
+        text-align: justify;
+        color:rgba(0, 0, 0, 0.8);
+        font-size: 16px;
+        line-height: 2vw;
+        background-color:lightgoldenrodyellow;
+    }
+    .container ul{
+        padding-left: 3vw;
+        color: rgba(0, 0, 0, 0.8);
+        background-color:lightgoldenrodyellow;
+    }
+</style>
+<%- include('header')%>
+<div class="container">
+    <div class="section">
+        <h3>1. What is Rakt Daan?</h3>
+        <p>Rakt Daan is an online platform designed to connect patients in need of blood with local blood banks and donors. We aim to make blood donation and retrieval more accessible by providing real-time information on blood availability and facilitating easy blood requests.</p>
+    </div>
+    <div class="section">
+        <h3>2. How does Rakt Daan work?</h3>
+        <p>Rakt Daan connects patients, healthcare providers, and blood banks through a user-friendly online interface. Patients can request blood directly from the platform, while blood banks can update their available stock. We also provide information about upcoming blood donation camps to encourage community participation.</p>
+    </div>
+    <div class="section">
+        <h3>3. How can I request blood through Rakt Daan?</h3>
+        <p>To request blood, simply visit our website and fill out the blood request form. Provide details such as the blood type required, quantity, and any additional information relevant to your situation. Your request will be forwarded to the nearest blood banks, and they will respond to you as soon as possible.</p>
+    </div>
+    <div class="section">
+        <h3>4. How can I donate blood through Rakt Daan?</h3>
+        <p>If you wish to donate blood, you can register on our platform as a donor. Once registered, you will receive notifications about blood donation camps and urgent requests for blood in your area. You can choose to participate in these drives or respond to specific requests based on your availability.</p>
+    </div>
+    <div class="section">
+        <h3>5. What information do I need to provide when requesting blood?</h3>
+        <p>When requesting blood, you will need to provide details such as:
+            <ul>
+                <li>The blood type and quantity needed</li>
+                <li>Patient’s name and contact information</li>
+                <li>Hospital or medical facility details</li>
+                <li>Any special instructions or requirements</li>
+            </ul>
+        </p>
+    </div>
+    <div class="section">
+        <h3>6. Is there a fee to use Rakt Daan?</h3>
+        <p>No, Rakt Daan is a free platform for both donors and patients. We aim to facilitate blood donation and requests without any cost to users.</p>
+    </div>
+    <div class="section">
+        <h3>7. How do I register as a donor?</h3>
+        <p>To register as a donor, visit the registration page on our website and provide your details, including name, contact information, and blood type. You may also need to provide some additional information about your health and eligibility to donate blood.</p>
+    </div>
+    <div class="section">
+        <h3>8. What if I need urgent blood and cannot find it on Rakt Daan?</h3>
+        <p>If you encounter any issues finding the required blood type, please contact us immediately through our support channels. We will work closely with local blood banks to assist you in finding a solution.</p>
+    </div>
+    <div class="section">
+        <h3>9. Can I update my registration details or preferences?</h3>
+        <p>Yes, registered users can update their details and preferences by logging into their account on our website. If you need further assistance, please contact our support team.</p>
+    </div>
+    <div class="section">
+        <h3>10. Is Rakt Daan available in all regions?</h3>
+        <p>Rakt Daan is continuously expanding its reach. While we aim to cover as many regions as possible, availability may vary based on local partnerships with blood banks. Check our website for the latest updates on service areas.</p>
+    </div>
+    <div class="section">
+        <h3>11. How can I find out about upcoming blood donation camps?</h3>
+        <p>Our website features a section dedicated to upcoming blood donation camps. You can view details about these events, including dates, locations, and how to participate. You can also sign up for notifications to stay informed about new camps.</p>
+    </div>
+</div>
+<%-include('footer')%>

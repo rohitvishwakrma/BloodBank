@@ -1,0 +1,120 @@
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container{
+        font-family: 'Arial', sans-serif;
+        background-image:linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url('/public/admin1.jpg');
+        background-size: 100% 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+    }
+    
+    .login-container {
+        width: 25vw;
+        background: rgba(255, 255, 255, 0.079);
+        padding: 30px;
+        border-radius: 8px;
+        height: max-content;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+    }
+    
+    .login-container h2 {
+        text-align: center;
+        color: #BF222B;
+        margin-bottom: 20px;
+    }
+    
+    .input-group {
+        margin-bottom: 15px;
+    }
+    .input-group span{
+        font-size: 20px;
+        font-weight: 900;
+        color: #BF222B;
+    }
+    .login-container label {
+        display: block;
+        margin-bottom: 5px;
+        color:Black;
+    }
+    
+    .login-container input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s ease;
+    }
+    
+    .login-container input:focus {
+        border-color: #5cb85c;
+        outline: none;
+    }
+    
+    .login-container button {
+        width: 100%;
+        padding: 10px;
+        background-color: #5cb85c;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .login-container button:hover {
+        background-color: #4cae4c;
+    }
+    
+    .login-container p {
+        text-align: center;
+        margin-top: 15px;
+    }
+    
+    .login-container a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .login-container form{
+        display: flex;
+        flex-direction: column;
+        gap: 4vh;
+        height: max-content;
+    }
+    .login-container a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+    
+</style>
+
+<div class="container">
+    <div class="login-container">
+        <h2>Admin Login</h2>
+        <form action="http://localhost:3000/admin/login" method="post">
+            <div class="input-group">
+                <label for="email">Username / User ID <span>*</span></label>
+                <input type="email" id="username" name="username" autocomplete="off" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password <span>*</span></label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button>Login</button>
+            <p>Return back to the : <a href="http://localhost:3000/">Home</a></p>
+        </form>
+    </div> 
+</div>
+

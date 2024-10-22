@@ -1,0 +1,62 @@
+<style>
+    .container{
+        min-height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 2.5vw 10vw;
+    }
+    h1{
+        color:#BF222B;
+        height: 8vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: scaleY(1.2);
+        background-color: pink;
+    }
+    .box1,.box2,.box3,.box4{
+        text-align: justify;
+        display: flex;
+        gap: 3vh;
+        padding: 2.5vh 0vh;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    h2{
+        color: #BF222B;
+    }
+    .box3 ul{
+        padding-left: 3vw;
+    }
+</style>
+<%- include('header')%>
+<div class="container">
+    <div class="box1">
+        <h1>Welcome to Rakt Daan</h1>
+        <p>Rakt Daan is a pioneering online platform dedicated to transforming the way blood donation and retrieval services are accessed. Our ultimate goal is to facilitate critical connections between blood donors and patients in urgent need of blood, ensuring that every request for blood is met with efficiency and compassion.</p>
+    </div>
+    <div class="box2">
+        <h2>Our Purpose</h2>
+        <p>In today’s fast-paced world, timely access to blood can be a matter of life and death. Rakt Daan addresses this critical need by offering a streamlined, digital solution that connects patients with blood banks and donors swiftly. Our platform is designed to make the process of requesting and donating blood as straightforward and accessible as possible.</p>
+    </div>
+    <div class="box3">
+        <h2>Key Features</h2>
+        <ul>
+            <li>Real-Time Blood Availability: Rakt Daan integrates directly with local blood banks, providing real-time updates on blood stock levels. This ensures that patients and healthcare providers have immediate access to accurate information regarding the availability of different blood types.</li>
+            <li>
+                Efficient Blood Donation Requests: Our platform allows patients, caregivers, and healthcare providers to submit blood requests online. This system facilitates a quick and organized response from donors and blood banks, reducing wait times and improving overall efficiency.
+            </li>
+            <li>
+                Comprehensive Blood Camp Information: Stay informed about upcoming blood donation drives and blood camps organized in your area. By providing details about these events, we encourage community participation and support the continuous need for blood donations.
+            </li>
+        </ul>
+    </div>
+    <div class="box4">
+        <h2>Our Mission</h2>
+        <p>Rakt Daan is committed to enhancing the accessibility of blood donation and transfusion services through innovative technology. Our mission is to create a responsive and reliable resource that can be accessed during emergencies and routine needs alike. We aim to bridge the gap between those who need blood and those who can give it, making a tangible difference in critical situations.</p>
+        <p>By leveraging the power of technology, Rakt Daan aspires to build a supportive network that not only addresses immediate blood needs but also fosters a culture of altruism and community support. Join us in our mission to save lives and make blood donation a more accessible and impactful process for everyone involved.</p>
+    </div>
+</div>
+<%- include('footer')%>

@@ -1,0 +1,235 @@
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container{
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;  
+        min-height: 120vh;
+        width: 100vw;
+        display: flex;
+        background-color: #f4f4f4;
+        justify-content: center;
+        align-items: center;
+    }
+    .box{
+        width: 70vw;
+        background-color: white;
+        min-height: 110vh;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+    .box form{
+        width: 100%;
+        height: 85vh;
+        display: flex;
+        margin-bottom: 3vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .box h1{
+        color: #BF222B;
+    }
+    .box table{ 
+        width: 100%;
+        height: 60vh;
+    }
+    .box td{
+        padding: 0vw 1vw;
+    }
+    .box input,.box select{
+        width: 100%;
+        padding-left: 1vh;
+        margin: 1vh 0vh;
+        height: 4.5vh;
+        border: 1px solid lightgray;
+        outline: 0px solid;
+        border-radius: 5px;
+    }
+    .box input:focus,.box select:focus{
+        box-shadow: 0px 0px 2px lightseagreen;
+    }
+    .box button{
+        background-color: #c21313;
+        padding: 8px;
+        font-size: 16px;
+        width: 6vw;
+        transform: scaleY(1.1);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+    }
+    span{
+        color: red;
+    }
+    .box button:hover{
+        background-color: brown;
+    }
+    .box label{
+        font-weight:700;
+        padding-left: 1vh;
+    }
+    .captcha{
+        width: 10vw;
+        height: 13vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .captcha_box{
+        height: 5vh;
+        width: 10vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        background-color: pink;
+    }
+    .arrow{
+        width: 2vw;
+        height: 5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .captcha_val{
+        height: inherit;
+        font-size: 18px;
+        font-weight: 600;
+        color: green;
+        width: 8vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family:cursive;
+        text-decoration:line-through;
+    }
+    #captcha{
+        width: 8vw;
+        font-weight: 530;
+        text-align: center;
+    }
+</style>
+<%- include('header.ejs')%>
+<div class="container">
+    <div class="box">
+        <h1>Donor Registration</h1>
+        <form action="http://localhost:3000/donor/signup" method="post">
+            <table >
+                <tr>
+                    <td>
+                        <label for="name">Name:<span>*</span></label><br>
+                        <input type="text" id="name" name="name" placeholder="Enter Name" required autocomplete="none" >
+                    </td>
+                    <td>
+                        <label for="age">Age:<span>*</span></label><br>
+                        <input type="text" id="dob" maxlength="2" placeholder="Enter Age" name="age" required autocomplete="off">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="gender">Gender:<span>*</span></label><br>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </td>
+                    <td>
+                        <label for="bloodgroup">Blood Group:<span>*</span></label><br>
+                        <select id="bloodgroup" name="bloodgroup" required>
+                            <option value="">Select</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="N/A">N/A</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email">Email:<span>*</span></label><br>
+                        <input type="email" id="email" name="email" placeholder="Enter Email"  required autocomplete="none">
+                    </td>
+                    <td>
+                        <label for="phone">Mobile:<span>*</span></label><br>
+                        <input type="tel" id="phone" maxlength="10" name="phone" placeholder="Enter Mobile No." required autocomplete="none">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="address">Address:<span>*</span></label><br>
+                        <input type="text" id="address" name="address" placeholder="Enter Address" required autocomplete="none">
+                    </td>
+                    <td>
+                        <label for="pin">PinCode:<span>*</span></label><br>
+                        <input type="text" id="pin" maxlength="6" name="pin" placeholder="Enter Pin Code" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="password">Password:<span>*</span></label><br>
+                        <input type="password" id="password" name="password" placeholder="Enter Password" required autocomplete="none">
+                    </td>
+                    <td>
+                        <label for="comfirm">Comfirm Password:<span>*</span></label><br>
+                        <input type="password" id="re_password" name="re_password" placeholder="Re-Enter Password" required autocomplete="none">
+                    </td>
+                </tr>
+            </table>
+            <div class="captcha">
+                <div class="captcha_box">
+                    <div class="captcha_val"></div>
+                    <div class="arrow">
+                        <i class="fa-solid fa-arrows-rotate" onclick="refreash()" style="cursor: pointer;"></i>
+                    </div>
+                </div>
+                <input type="text" name="captcha" id="captcha" maxlength="7" required placeholder="Captcha">
+            </div>
+            <button>Sign Up</button>
+        </form>
+    </div>
+</div>
+<script>
+    function refreash(){
+        let arr=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9'];
+        let random_string='';
+        for(let i=0;i<6;i++){
+            random_string+=arr[Math.floor(Math.random()*arr.length)];
+        }
+        document.querySelector('.captcha_val').textContent=random_string;
+    }
+    refreash();
+    document.querySelector('form').addEventListener('submit', function(e){
+        e.preventDefault();
+        console.log(password.value)
+        if(captcha.value!= document.querySelector('.captcha_val').textContent){
+            alert('Invalid Captcha');
+            refreash();
+            document.querySelector('#captcha').value=''
+            return;
+        }
+        else if(password.value!=re_password.value&&password.value.length>0){
+            alert('Password and Comfirm Password do not match');
+            return;
+        }
+        else{
+            alert('Form submitted successfully');
+            this.submit();
+        }
+    })
+</script>

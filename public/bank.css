@@ -1,0 +1,136 @@
+.outerbox{
+    width: 100vw;
+    min-height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    background-color: #f4f4f4;
+}
+.container {
+    width: 80vw;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    margin: 10vh 0vh;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.container form{
+    width: 75vw;
+    margin: 5vh auto 0vh auto;
+    min-height: 140vh;
+    position: relative;
+    overflow: auto;
+}
+.container form .box,.container form .box1{
+    position: absolute;
+}
+.box1{
+    z-index: -1;
+}
+.container_nav{
+    display: flex;
+    padding: 2vh 2vh 0vh 2vh;
+    gap: 1vh;
+    border-bottom: 1px solid #BF222B;
+}
+.container_nav #btn1,.container #btn2{
+    height: 7vh;
+    font-size: 17px;
+    color: gray;
+    width: 18vw;
+    position: relative;
+    border-radius: 6px 6px 0px 0px;
+    border: 0px solid;
+    background-color: white;
+}
+.container_nav #btn1{
+    top: 0.1vh;
+    color: #BF222B;
+    border-left: 1px solid #BF222B;
+    border-right: 1px solid #BF222B;
+    border-top: 1px solid #BF222B;
+}
+
+
+fieldset{
+    border: 1px solid #c21313;
+    border-radius: 4px;
+    width: 75vw;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+legend{
+    padding: 1vh;
+    transform: scale(1,1.1);
+    border-left: 1px solid #c21313;
+    border-right: 1px solid #c21313;
+    font-weight: 550;
+    margin-bottom: 10px;
+}
+.box .form-group label{
+    display: flex;
+    height: 12vh;
+    gap: 1vh;
+    flex-direction: column;
+    padding-left: 2vh;
+}
+
+.box1 .form-group label input{
+    width: 2.5vh;
+    height: 2.5vh;
+}
+.box1 .form-group label{
+    display: flex;
+    height: 5vh;
+    width: 100%;
+    gap: 4vh;
+    justify-content: baseline;
+    align-items: center;
+}
+.form-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#bank_form span span{
+    color: #BF222B;
+    font-size: 17px;
+    font-weight: 600;
+}
+.form-group input,.form-group select{
+    width: 33vw;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form_footer_btn button{
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    align-items: center;
+}
+.form_footer_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.next-btn {
+    background-color: #BF222B; /* Green */
+    color: white;
+}
+
+.next-btn:hover {
+    background-color: #da190b;
+}
+.submit-btn {
+    color: white;
+    background-color: #4CAF50;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}   

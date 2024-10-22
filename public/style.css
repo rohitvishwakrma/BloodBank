@@ -1,0 +1,119 @@
+.link_container{
+    height: 50vh;
+    background-color: lightgray;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    gap: 5vw;
+}
+.link_container a{
+    width: min-content;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    text-align: center;
+    transform: scaleY(1.2);
+    word-wrap:break-word;
+}
+.link_container a:hover{
+    text-decoration: underline;
+}
+.link_container div{
+    height: 20vh;
+    box-shadow: 2px 2px 4px  rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    width: 12vw;
+    transition: 0.3s linear;
+    background-color: red;
+}
+.link_container div:hover{
+    transform: translateY(-10px);
+}
+.slider_container{
+    top: 8vh;
+    height: 65vh;
+    width: 100vw;
+    overflow: hidden;
+}
+.slider{
+    height: 65vh;
+    width: 100%;
+    transition: 2s linear;
+    position: relative;
+    
+}
+.slider img{
+    height: 65vh;
+    width: 100vw;
+    position: absolute;
+    object-fit:fill;
+}
+.table_container{
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    background-color: white;
+}
+.table_container h1{
+    color: #BF222B;
+}
+.table_part{
+    display: flex;
+    width: 100vw;
+}
+.table_img {
+    width: 50%;
+    height: 60vh;
+}
+
+.table_img img{
+    width: 90%;
+    height: 50vh;
+}
+.table_img p{
+    width: 100%;
+    height: max-content;
+    padding: 1vw 3vw;
+    font-size: 17px;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.table_box{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.table_img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.table_box table{
+    width: 35vw;
+    height: 60vh;
+    border-collapse: collapse;
+}
+.table_box th{
+    text-align: left;
+    padding-left: 4px;
+    background-color: #FF0000;
+    color: white;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+.table_box td{
+    padding-left: 4px;
+    border-top: 1px solid black;
+    background-color: rgba(220, 220, 220, 0.5);
+}

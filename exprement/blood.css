@@ -1,0 +1,112 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container { 
+    width: 80%;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+fieldset {
+    border: 1px solid #c21313;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+    min-height: max-content;
+}
+
+legend {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+    min-height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #efe3e3;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+select:focus,
+textarea:focus {
+    border-color: red !important;
+    outline: red;
+}
+
+
+textarea {
+    height: 100px;
+    resize: vertical;
+
+}
+
+
+button {
+    display: block;
+    width: 10%;
+    align-self: center;
+    padding: 10px;
+    background-color: #c21313;
+    color: white;
+    border: none;
+    margin: 10px auto;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: brown;
+}
+
+
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    width: 100%;
+    
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    margin-right: 120px;
+    width: 20vw;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+}

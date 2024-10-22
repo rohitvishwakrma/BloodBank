@@ -1,0 +1,88 @@
+<link rel="stylesheet" type="text/css" href="style.css">
+<%- include('header') %>
+<div class="slider_container">
+    <div class="slider">
+        <img src="home.jpeg" alt="">
+        <img src="home3.jpeg" alt="">
+    </div>
+</div>
+<div class="link_container">
+    <div style="background-color: brown;">
+        <a href="http://localhost:3000/availability">Blood Availability</a>
+    </div>
+    <div style="background-color: #2891C0;">
+        <a href="http://localhost:3000/bank/Registration">Register Blood Bank</a>
+    </div>
+    <div style="background-color: Green;">
+        <a href="http://localhost:3000/camp">Blood Donation Camp</a>
+    </div>
+    <div>
+        <a href="http://localhost:3000/donor/login">Donor Login</a>
+    </div>
+    <div style="background-color: orange;">
+        <a href="http://localhost:3000/camp/registration">Register Blood Camp</a>
+    </div>
+</div>
+<div class="table_container">
+    <h1>About Donation</h1>
+    <div class="table_part">
+        <div class="table_img">
+            <img src="image6.png" alt="">
+            <p>After donating blood, the body works to replenish the blood loss. This stimulates the production of new blood cells and in turn, helps in maintaining good health.</p>
+        </div>
+        <div class="table_box">
+            <table>
+                <tr>
+                    <th colspan="3">Compatible Blood Type Donors</th>
+                </tr>
+                <tr>
+                    <td style="font-size: 18px;"><b>Blood Type</b></td>
+                    <td style="font-size: 18px;"><b>Donate Blood To</b></td>
+                    <td style="font-size: 18px;"><b>Receive Blood From</b></td>
+                </tr>
+                <tr>
+                    <td style="color: brown;font-weight:900; font-size:18px;">A+</td>
+                    <td>A+ AB+</td>
+                    <td>A+ A- O+ O-</td>
+                </tr>
+                <tr>
+                    <td style="color: brown;font-weight:900; font-size:18px;">B+</td>
+                    <td>B+ AB+</td>
+                    <td>B+ B- O+ O-</td>
+                </tr>
+                <tr>
+                    <td style="color: brown;font-weight:900; font-size:18px;">AB+</td>
+                    <td>AB+</td>
+                    <td>Everyone</td>
+                </tr>
+                <tr>
+                    <td style="color: brown;font-weight:900; font-size:18px;" style="color: brown;font-weight:900; font-size:18px;">O+</td>
+                    <td>O+ A+ B+ AB+</td>
+                    <td>O+ O-</td>
+                </tr>
+                <tr>
+                    <td style="color: brown;font-weight:900; font-size:18px;" >A-</td>
+                    <td>A+ A- AB+ AB-</td>
+                    <td>A- O-</td>
+                </tr>
+                <tr>
+                    <td style="color: brown;font-weight:900; font-size:18px;">B-</td>
+                    <td>B+ B- AB+ AB-</td>
+                    <td>B- O-</td>
+                </tr>
+                <tr>
+                    <td style="color: brown;font-weight:900; font-size:18px;">AB-</td>
+                    <td>AB+ AB-</td>
+                    <td>AB- A- B- O-</td>
+                </tr>
+                <tr>
+                    <td style="color: brown;font-weight:900; font-size:18px;">O-</td>
+                    <td>Everyone</td>
+                    <td>O-</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<%- include('footer')%>
+<script src="script.js"></script>

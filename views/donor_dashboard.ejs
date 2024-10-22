@@ -1,0 +1,56 @@
+<style>
+    .container {
+        height: 92vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .container .out{
+        display: flex;
+        height: 10vh;
+        justify-content: space-between;
+    }
+    .box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height:82vh;
+    }
+    .box div div{
+        width: 20vw;
+        height: 7vh;
+        margin: 1vh;
+        border: 1px solid;
+    }
+    button {
+        height: 5vh;
+        width: 6vw;
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        background-color: red;
+        border: none;
+        border-radius: 3px;
+    }
+</style>
+<%-include('header.ejs')%>
+    <div class="container">
+        <div class="out">
+            <h1>Welcome </h1>
+            <a href="http://localhost:3000/donor/logout"><button id="logout-btn">Logout</button></a>
+        </div>
+        <div class="box">
+            <div class="info">
+                <div onclick="">Home</div>
+                <div>Mange Profile</div>
+                <div>Certificates</div>
+            </div>
+            <div class="details">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+            </div>
+        </div>
+    </div>
+
+<%-include('footer.ejs')%>

@@ -1,0 +1,189 @@
+<style>
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 120vh;
+        width: 100vw;
+    }
+    .box{
+        width: 70vw;
+        min-height: 80vh;
+        padding: 0vw;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px #ccc;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 5vh;
+        align-items: center;
+    }
+    #campform{
+        width: 70vw;
+        min-height: 60vh;
+    }
+    #h3 {
+        text-align: center;
+        background-color: #BF222B;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 6vh;
+        border-radius: 8px 8px 0px 0px;
+        width: 100%;
+    }
+    
+    .column {
+        display: grid;
+        grid-template-columns: auto auto;
+        width: 100%;
+    }
+    
+    .column label {
+        display: flex;
+        justify-content: space-between;
+        height: 10vh;
+        font-weight:bold;
+        color: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+        margin: 1vh 1vh 1vh 2vh;
+    }
+    #campform span span{
+        color:#BF222B
+    }
+    .column select,.column input{
+        width: 98%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .box button {
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #007BFF;
+        color: white;
+        cursor: pointer;
+    
+    }        
+</style>
+<%- include('header.ejs')%>
+<div class="form-container">
+    <div class="box">
+        <h3 id="h3">Camp Registration</h3>
+        <form action="#" method="post" id="campform">
+            <div class="column">
+                <label for="Organization_Type"><span>Organization Type <span>*</span></span>
+                    <select  name="Organization_Type" required>
+                        <option value="">Select Organization</option>
+                        <option value="Government Organization">Government Organization</option>
+                        <option value="Private Organization">Private Organization</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </label>
+                <label for="Organization_Name"><span>Organization Name <span>*</span></span>
+                    <input type="text" name="Organization_Name" required>
+                </label>
+                <label for="Organizer_Name"><span>Organizer Name <span>*</span></span>
+                    <input type="text"  name="Organizer_Name" required>
+                </label>
+                <label for="Organizer_Mobile_No"><span>Organizer Mobile No <span>*</span></span>
+                    <input type="text" name="Organizer_Mobile_No" maxlength="10">
+                </label>
+                <label for="Organizer_Email_Id"><span>Organizer Email Id <span>*</span></span>
+                    <input type="email" name="Organizer_Email_Id" required>
+                </label>
+                <label for="Camp_Date"><span>Camp Date <span>*</span></span>
+                    <input type="date" name="Camp_Date" required>
+                </label>
+                <label for="Camp_Name"><span>Camp Name <span>*</span></span>
+                    <input type="tel" name="Camp_Name" required>
+                </label>
+                
+                <label for="Camp_Address"><span>Camp Address <span>*</span></span>
+                    <input type="text" name="Camp_Address" required>
+                </label>
+                <label for="state"><span>State <span>*</span></span>
+                    <select name="State" required>
+                        <option value="">Select State</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    </select>
+                </label>
+                <label for="district"><span>District <span>*</span></span>
+                    <select name="District" required>
+                        <option value="">Select District</option>
+                        <option value="">Select District</option>
+                        <option value="Bhopal">Bhopal</option>
+                        <option value="Raisen">Raisen</option>
+                        <option value="Rajgarh">Rajgarh</option>
+                        <option value="Sehore">Sehore</option>
+                        <option value="Vidisha">Vidisha</option>
+                        <option value="Morena">Morena</option>
+                        <option value="Sheopur">Sheopur</option>
+                        <option value="Bhind">Bhind</option>
+                        <option value="Gwalior">Gwalior</option>
+                        <option value="Ashoknager">Ashoknager</option>
+                        <option value="Shivpuri">Shivpuri</option>
+                        <option value="Datia">Datia</option>
+                        <option value="Guna">Guna</option>
+                        <option value="Alirajpu">Alirajpur</option>
+                        <option value="Barwani">Barwani</option>
+                        <option value="Burhanpur">Burhanpur</option>
+                        <option value="Indor">Indor</option>
+                        <option value="Dhar">Dhar</option>
+                        <option value="Jhabua">Jhabua</option>
+                        <option value="Khandwa">Khandwa</option>
+                        <option value="Khargone">Khargone</option>
+                        <option value="Balaghat">Balaghat</option>
+                        <option value="Chhindwara">Chhindwara</option>
+                        <option value="Jabalpur">Jabalpur</option>
+                        <option value="Katni">Katni</option>
+                        <option value="Mandla">Mandla</option>
+                        <option value="Narsinghpur">Narsinghpur</option>
+                        <option value="Seoni">Seoni</option>
+                        <option value="Dindori">Dindori</option>
+                        <option value="Pandhurna">Pandhurna</option>
+                        <option value="Betul">Betul</option>
+                        <option value="Harda">Harda</option>
+                        <option value="Narmadapuram">Narmadapuram</option>
+                        <option value="Rewa">Rewa</option>
+                        <option value="Satna">Satna</option>
+                        <option value="Sidhi">Sidhi</option>
+                        <option value="Singrauli">Singrauli</option>
+                        <option value="Mauganj">Mauganj</option>
+                        <option value="Maihar">Maihar</option>
+                        <option value="Chhatarpur">Chhatarpur</option>
+                        <option value="Damoh">Damoh</option>
+                        <option value="Panna">Panna</option>
+                        <option value="Sagar">Sagar</option>
+                        <option value="Tikamgarh">Tikamgarh</option>
+                        <option value="Niwari">Niwari</option>
+                        <option value="Anuppur">Anuppur</option>
+                        <option value="Shahdol">Shahdol</option>
+                        <option value="Umaria">Umaria</option>
+                        <option value="Ager Malwa">Ager Malwa</option>
+                        <option value="Dewas">Dewas</option>
+                        <option value="Mandsaur">Mandsaur</option>
+                        <option value="Neemuch">Neemuch</option>
+                        <option value="Ratlam">Ratlam</option>
+                        <option value="Shajapur">Shajapur</option>
+                        <option value="Ujjain">Ujjain</option>
+                    </select>
+                </label>
+                <label for="startTime"><span>Start Time <span>*</span></span>
+                    <input type="time" name="Start_Time" required>
+                </label>
+                <label for="endTime"><span>End Time <span>*</span></span>
+                    <input type="time" name="End Time" required>
+                </label>
+            </div>
+        </form>
+        <button type="submit">Submit</button>
+    </div>
+</div>
+<%- include('footer.ejs')%>
