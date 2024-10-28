@@ -7,6 +7,7 @@ let localpassport = require('passport-local').Strategy;
 let admin = require('./routes/admin.js');
 let donor = require('./routes/donor.js');
 let bank = require('./routes/bank.js');
+let camp = require('./routes/camp.js');
 let connection = require('./database.js');
 
 app.use(express.json());
@@ -52,6 +53,7 @@ passport.deserializeUser(function (user, done) {
 app.use('/admin', admin);
 app.use('/donor', donor);
 app.use('/bank', bank);
+app.use('/camp',camp);
 
 // Default routes
 app.get("/", function (req, res) {
@@ -78,9 +80,6 @@ app.get("/contact", function (req, res) {
   res.render("contact.ejs");
 });
 
-app.get("/camp/registration", function (req, res) {
-  res.render("camp_registration.ejs");
-});
 
 app.listen(3000, function () {
   console.log("Server started at port 3000");

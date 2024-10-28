@@ -3,13 +3,13 @@ document.querySelector('form').addEventListener('submit', function(e){
     let Fields = [
         Blood_Bank_Name,
         Email,
-        // Pincode,
-        // Address,
-        // district,
-        // state,
-        // License_Expiry,
-        // License_Issue,
-        // Licence_No,
+        Pincode,
+        Address,
+        district,
+        state,
+        License_Expiry,
+        License_Issue,
+        Licence_No,
         Contact_No,
         Person_Name,
         Category
@@ -23,10 +23,10 @@ document.querySelector('form').addEventListener('submit', function(e){
     } 
     let checkboxGroups = [
         document.querySelectorAll('input[name="Donor_Type"]:checked'),
-        // document.querySelectorAll('input[name="Donation_Type"]:checked'),
-        // document.querySelectorAll('input[name="Component_Type"]:checked'),
-        // document.querySelectorAll('input[name="Bag_Type"]:checked'),
-        // document.querySelectorAll('input[name="TTI_Type"]:checked')
+        document.querySelectorAll('input[name="Donation_Type"]:checked'),
+        document.querySelectorAll('input[name="Component_Type"]:checked'),
+        document.querySelectorAll('input[name="Bag_Type"]:checked'),
+        document.querySelectorAll('input[name="TTI_Type"]:checked')
     ];
 
     for (let i = 0; i < checkboxGroups.length; i++) {

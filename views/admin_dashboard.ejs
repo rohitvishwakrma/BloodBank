@@ -9,7 +9,7 @@
         background-color: #f4f4f4;
     }
     .admin_box{
-        padding: 5vh 0vh;
+        padding: 5vh 5vh;
         width: 95vw;
         min-height: 100vh;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -48,9 +48,14 @@
         transition: background-color 0.3s; 
         border-radius: 5px; 
     }
-    
+    .nav_hover1{
+        background-color: #0056b3;
+    }
     .nav_item:hover {
         background-color: #0056b3; 
+    }
+    .nav_item_self{
+        align-self: flex-end;
     }
     .details{
         width: 90vw;
@@ -123,12 +128,13 @@
 </style>
 <%- include('header.ejs')%>
 <div class="conatiner">
-    <a href="/admin/logout">Logout</a>
     <div class="admin_box">
+        <div class="nav_item_self"><a href="/admin/logout"><button class="reject-button">Log Out</button></a></div>
         <h2>Admin Dashboard</h2>
+        
         <div class="nav_box">
-            <div class="nav_item" onclick="first()">Blood Bank Applications</div>
-            <div class="nav_item" onclick="second()">Camp Applications</div>
+            <div class="nav_item nav_hover1" onclick="first()">Blood Bank Applications</div>
+            <div class="nav_item nav_hover2" onclick="second()">Camp Applications</div>
         </div>
         <div class="details">
             <div class="blood_details">
@@ -138,30 +144,18 @@
                             <th>Bank ID</th>
                             <th>Name</th>
                             <th>Category</th>
-                            <th>Location</th>
                             <th>Email</th>
                             <th>Licence No</th>
                             <th>License Issue</th>
                             <th>License Expiry</th>
+                            <th>State</th>
+                            <th>District</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
-                            <td>ABC Blood Bank</td>
-                            <td>A+</td>
-                            <td>Mumbai</td>
-                            <td>abc@gmail.com</td>
-                            <td>BB/123/2022</td>
-                            <td>01/01/2022</td>
-                            <td>01/01/2025</td>
-                            <td>
-                                <div class="button-container">
-                                    <button class="accept-button">Accept</button>
-                                    <button class="reject-button">Reject</button>
-                                </div>
-                            </td>
+                            <td colspan="10">No more Blood Bank request are here.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -171,26 +165,21 @@
                     <thead>
                         <tr>
                             <th>Camp ID</th>
+                            <th>Category</th>
                             <th>Name</th>
-                            <th>Location</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                            <th>Address</th>
+                            <th>State</th>
+                            <th>District</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
-                            <td>XYZ Blood Bank</td>
-                            <td>Pune</td>
-                            <td>01/01/2022</td>
-                            <td>01/01/2025</td>
-                            <td>
-                                <div class="button-container">
-                                    <button class="accept-button">Accept</button>
-                                    <button class="reject-button">Reject</button>
-                                </div>
-                            </td>
+                            <td colspan="10">No more Blood Camp request are here.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -200,12 +189,76 @@
 </div>
 <%-include('footer.ejs')%>
 <script>
+    let data=<%- JSON.stringify(bankdetails||[])%>;
+    if(data.length>0)
+     document.querySelector('.blood_details table tbody').innerHTML='';
+    for(let i=0;i<data.length;i++){
+        let row = document.createElement('tr');
+        for(let key in data[i]){
+            if(key=='bank_id'||key=='Blood_Bank_Name'||key=='Category'||key=='state'||key=='district'||key=='Email'||key=='Licence_No'||key=='License_Issue'||key=='License_Expiry'){
+                let cell = document.createElement('td');
+                if(key=='License_Issue'||key=='License_Expiry')
+                    cell.textContent = data[i][key].substring(0,10);
+                else    
+                    cell.textContent = data[i][key]  
+                row.appendChild(cell);
+            }
+        }
+        let cell=document.createElement('td');
+        let divs=document.createElement('div');
+        divs.className='button-container';
+        let btn1=document.createElement('button');
+        btn1.className='accept-button';
+        btn1.innerHTML="Accept";
+        let btn2=document.createElement('button');
+        btn2.className='reject-button';
+        btn2.innerHTML="Reject";
+        divs.appendChild(btn1);
+        divs.appendChild(btn2);
+        cell.appendChild(divs);
+        row.appendChild(cell);
+        document.querySelector('.blood_details table tbody').appendChild(row);
+    }
+    let campdata=<%- JSON.stringify(campdetails||[])%>;
+    if(campdata.length>0)
+        document.querySelector('.camp_details table tbody').innerHTML='';
+    for(let i=0;i<campdata.length;i++){
+        let row = document.createElement('tr');
+        for(let key in campdata[i]){
+            if(key=='camp_id'||key=='organization_type'||key=='camp_name'||key=='state'||key=='camp_date'||key=='district'||key=='camp_address'||key=='organizer_email_id'||key=='start_time'||key=='end_time'){
+                let cell = document.createElement('td');
+                if(key=='camp_date')
+                    cell.textContent = campdata[i][key].substring(0,10);
+                else    
+                    cell.textContent = campdata[i][key]  
+                row.appendChild(cell);
+            }
+        }
+        let cell=document.createElement('td');
+        let divs=document.createElement('div');
+        divs.className='button-container';
+        let btn1=document.createElement('button');
+        btn1.className='accept-button';
+        btn1.innerHTML="Accept";
+        let btn2=document.createElement('button');
+        btn2.className='reject-button';
+        btn2.innerHTML="Reject";
+        divs.appendChild(btn1);
+        divs.appendChild(btn2);
+        cell.appendChild(divs);
+        row.appendChild(cell);
+        document.querySelector('.camp_details table tbody').appendChild(row);
+    }
     function first() {
         document.querySelector('.blood_details').style.zIndex = 0;
         document.querySelector('.camp_details').style.zIndex = -1;
+        document.getElementsByClassName('nav_hover1')[0].style.backgroundColor ='#0056b3';
+        document.getElementsByClassName('nav_hover2')[0].style.backgroundColor ='#007BFF';
     }
     function second() {
         document.querySelector('.blood_details').style.zIndex = -1;
         document.querySelector('.camp_details').style.zIndex = 0;
+        document.getElementsByClassName('nav_hover2')[0].style.backgroundColor ='#0056b3';
+        document.getElementsByClassName('nav_hover1')[0].style.backgroundColor ='#007BFF';
     }
 </script>

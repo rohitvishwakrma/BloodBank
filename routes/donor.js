@@ -1,5 +1,3 @@
-
-
 let express = require('express');
 let router = express.Router({mergeParams: true });
 let bcrypt = require('bcryptjs');

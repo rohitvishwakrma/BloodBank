@@ -6,6 +6,8 @@ let localpassport = require('passport-local').Strategy;
 let path = require('path');
 let flash = require('connect-flash');
 let connection = require('../database.js');
+const { fchmod } = require('fs');
+const { promises } = require('dns');
 // Initialize flash messages and static files
 router.use(express.static(path.join(__dirname, "../public")));
 router.use(flash());
@@ -38,9 +40,9 @@ passport.use('admin-local', new localpassport(
 
 router.get("/login", function (req, res) {
     if (req.isAuthenticated() && req.user.role === 'admin') 
-        res.render('admin_dashboard.ejs');
+        res.redirect('/admin/dashboard');
     else 
-        res.render("admin_login.ejs");
+        res.render('admin_login.ejs');
 });
 
 router.post("/login", passport.authenticate('admin-local', {
@@ -48,9 +50,33 @@ router.post("/login", passport.authenticate('admin-local', {
     failureRedirect: "/admin/login",
     failureFlash: true
 }));
-router.get("/dashboard", function (req, res) {
-    if (req.isAuthenticated() && req.user.role === 'admin' ) res.render('admin_dashboard.ejs');
-    else res.render("admin_login.ejs")
+router.get("/dashboard",async function (req, res) {
+    if (req.isAuthenticated() && req.user.role === 'admin' ){
+        try{
+            let sql=`select * from bank`;
+            let bankdetails='';
+            bankdetails = await new Promise(function(resolve, reject) {
+                connection.query(sql, function (err, result) {
+                    if (err) reject(err); // Handle the error
+                    else resolve(result);  // Resolve with the result
+                });
+            });
+
+            const campdetails= await new Promise(function(resolve,reject){
+                connection.query(`SELECT * FROM blood_camp`, function (err, result) {
+                    if (err) reject(err); // Handle the error
+                    else resolve(result);  // Resolve with the result
+                });
+            })
+            res.render('admin_dashboard.ejs',{bankdetails,campdetails});
+        }
+        catch(err){
+            console.error("Database error:", err);
+        }
+    }
+        
+    else 
+        res.redirect("admin/login");
 });
 router.get("/signup",function(req,res){
     res.render('admin_signup.ejs');
@@ -75,5 +101,4 @@ router.get('/logout', function (req, res) {
         res.redirect('/');
     });
 });
-
 module.exports = router;

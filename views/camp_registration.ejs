@@ -9,7 +9,7 @@
     .box{
         width: 70vw;
         min-height: 80vh;
-        padding: 0vw;
+        padding: 0vw 0vw 3vw 0vw ;
         border: 1px solid #ccc;
         border-radius: 8px;
         box-shadow: 0 0 10px #ccc;
@@ -22,6 +22,10 @@
     #campform{
         width: 70vw;
         min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10vh;
     }
     #h3 {
         text-align: center;
@@ -44,14 +48,15 @@
     .column label {
         display: flex;
         justify-content: space-between;
-        height: 10vh;
-        font-weight:bold;
-        color: rgba(0, 0, 0, 0.9);
+        height: 11vh;
+        color: black;
         flex-direction: column;
         margin: 1vh 1vh 1vh 2vh;
     }
     #campform span span{
-        color:#BF222B
+        color: #BF222B;
+        font-size: 17px;
+        font-weight: 600;
     }
     .column select,.column input{
         width: 98%;
@@ -76,46 +81,47 @@
 <div class="form-container">
     <div class="box">
         <h3 id="h3">Camp Registration</h3>
-        <form action="#" method="post" id="campform">
+        <form action="http://localhost:3000/camp/submition" method="post" id="campform">
             <div class="column">
-                <label for="Organization_Type"><span>Organization Type <span>*</span></span>
-                    <select  name="Organization_Type" required>
-                        <option value="">Select Organization</option>
-                        <option value="Government Organization">Government Organization</option>
-                        <option value="Private Organization">Private Organization</option>
-                        <option value="Other">Other</option>
+                <label for="Organization_Type"><span>Category <span>*</span></span>
+                    <select  name="Organization_Type" id="Organization_Type" required>
+                        <option value="">Select type</option>
+                        <option value="Govt">Govt</option>
+                        <option value="Private">Private</option>
+                        <option value="Charitable">Charitable</option>
+                        <option value="Others">Others</option>
                     </select>
                 </label>
-                <label for="Organization_Name"><span>Organization Name <span>*</span></span>
-                    <input type="text" name="Organization_Name" required>
-                </label>
-                <label for="Organizer_Name"><span>Organizer Name <span>*</span></span>
-                    <input type="text"  name="Organizer_Name" required>
-                </label>
-                <label for="Organizer_Mobile_No"><span>Organizer Mobile No <span>*</span></span>
-                    <input type="text" name="Organizer_Mobile_No" maxlength="10">
-                </label>
-                <label for="Organizer_Email_Id"><span>Organizer Email Id <span>*</span></span>
-                    <input type="email" name="Organizer_Email_Id" required>
-                </label>
-                <label for="Camp_Date"><span>Camp Date <span>*</span></span>
-                    <input type="date" name="Camp_Date" required>
+                <label for="Organization_Name"><span>Organization Name</span>
+                    <input type="text" name="Organization_Name" id="Organization_Name" placeholder="Enter Parent Organization Name">
                 </label>
                 <label for="Camp_Name"><span>Camp Name <span>*</span></span>
-                    <input type="tel" name="Camp_Name" required>
+                    <input type="tel" name="Camp_Name" id="Camp_Name" placeholder="Enter Camp Name" required>
                 </label>
                 
                 <label for="Camp_Address"><span>Camp Address <span>*</span></span>
-                    <input type="text" name="Camp_Address" required>
+                    <input type="text" name="Camp_Address" id="Camp_Address" placeholder="Enter Camp Address" required>
+                </label>
+                <label for="Organizer_Name"><span>Organizer Name <span>*</span></span>
+                    <input type="text"  name="Organizer_Name" id="Organizer_Name" placeholder="Enter Organizer Name" required>
+                </label>
+                <label for="Organizer_Mobile_No"><span>Organizer Mobile No <span>*</span></span>
+                    <input type="text" name="Organizer_Mobile_No" id="Organizer_Mobile_No" placeholder="Enter Mobile No." maxlength="10" required>
+                </label>
+                <label for="Organizer_Email_Id"><span>Organizer Email Id <span>*</span></span>
+                    <input type="email" name="Organizer_Email_Id" id="Organizer_Email_Id" placeholder="Enter Email" required>
+                </label>
+                <label for="Camp_Date"><span>Camp Date <span>*</span></span>
+                    <input type="date" name="Camp_Date" id="Camp_Date" required>
                 </label>
                 <label for="state"><span>State <span>*</span></span>
-                    <select name="State" required>
+                    <select name="State" id="State" required>
                         <option value="">Select State</option>
                         <option value="Madhya Pradesh">Madhya Pradesh</option>
                     </select>
                 </label>
                 <label for="district"><span>District <span>*</span></span>
-                    <select name="District" required>
+                    <select name="District" id="District" required>
                         <option value="">Select District</option>
                         <option value="">Select District</option>
                         <option value="Bhopal">Bhopal</option>
@@ -176,14 +182,16 @@
                     </select>
                 </label>
                 <label for="startTime"><span>Start Time <span>*</span></span>
-                    <input type="time" name="Start_Time" required>
+                    <input type="time" name="Start_Time" id="Start_Time" required>
                 </label>
                 <label for="endTime"><span>End Time <span>*</span></span>
-                    <input type="time" name="End Time" required>
+                    <input type="time" name="End_Time" id="End_Time" required>
                 </label>
             </div>
+            <button>Submit</button>
         </form>
-        <button type="submit">Submit</button>
     </div>
 </div>
 <%- include('footer.ejs')%>
+<script>
+</script>
