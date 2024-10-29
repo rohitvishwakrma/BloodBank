@@ -1,3 +1,4 @@
+require('dotenv').config()
 let express = require('express');
 let app = express();
 let path = require('path');
@@ -9,6 +10,7 @@ let donor = require('./routes/donor.js');
 let bank = require('./routes/bank.js');
 let camp = require('./routes/camp.js');
 let connection = require('./database.js');
+let port=process.env.PORT||3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -81,8 +83,8 @@ app.get("/contact", function (req, res) {
 });
 
 
-app.listen(3000, function () {
-  console.log("Server started at port 3000");
+app.listen(port, function () {
+  console.log("Server started at port ",port);
 });
 
 
