@@ -1,6 +1,7 @@
 require('dotenv').config()
 let express = require('express');
 let app = express();
+const bodyParser = require('body-parser');
 let path = require('path');
 let session = require('express-session');
 let passport = require('passport');
@@ -18,7 +19,7 @@ app.use(express.static(path.join(__dirname)));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
-
+app.use(bodyParser.json()); 
 // Add separate session options for admin and donor
 let sessionOption = {
   secret: "AdminSecret",  
