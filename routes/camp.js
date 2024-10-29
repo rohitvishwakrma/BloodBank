@@ -6,12 +6,7 @@ let path=require('path');
 router.use(express.json())
 router.use(express.static(path.join(__dirname,"../public")));
 
-let connection=mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'Vinay@6378',
-    database:'BloodBank'
-});
+let connection = require('../database.js');
 
 router.get("/registration",function(req,res){
     res.render("camp_registration.ejs");
