@@ -9,7 +9,13 @@ router.use(express.static(path.join(__dirname,"../public")));
 let connection = require('../database.js');
 
 router.get("/Registration",function(req,res){
-    res.render("bank.ejs");
+    res.render("blood_bank_registration.ejs");
+})
+router.get("/login",function(req,res){
+    res.render("blood_bank_login.ejs");
+})
+router.get("/dashboard",function(req,res){
+    res.render("blood_bank_dashboard.ejs");
 })
 router.post("/submition",async function(req,res){
     try{

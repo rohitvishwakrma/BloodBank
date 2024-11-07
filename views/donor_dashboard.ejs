@@ -1,56 +1,256 @@
-<style>
-    .container {
-        height: 92vh;
-        display: flex;
-        flex-direction: column;
-    }
-    .container .out{
-        display: flex;
-        height: 10vh;
-        justify-content: space-between;
-    }
-    .box{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height:82vh;
-    }
-    .box div div{
-        width: 20vw;
-        height: 7vh;
-        margin: 1vh;
-        border: 1px solid;
-    }
-    button {
-        height: 5vh;
-        width: 6vw;
-        color: white;
-        font-size: 18px;
-        font-weight: 600;
-        cursor: pointer;
-        background-color: red;
-        border: none;
-        border-radius: 3px;
-    }
-</style>
-<%-include('header.ejs')%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Rakt Daan</title>
+    <link rel="shortcut icon" href="../blood.svg" type="image/x-icon">
+    <link rel="stylesheet" href="donor.css">
+</head>
+<body>
     <div class="container">
-        <div class="out">
-            <h1>Welcome </h1>
-            <a href="/donor/logout"><button id="logout-btn">Logout</button></a>
+        <div class="sidebar">
+            <h2>Donor Dashboard</h2>
+            <ul>
+                <li onclick="showSection('dashboard')">Dashboard</li>
+                <li onclick="showSection('donation-history')">Donation History</li>
+                <li onclick="showSection('donation-repository')">Donation Request</li>
+                <li onclick="showSection('profile')">Profile</li>
+                <a href="/donor/logout"><li>Logout</li></a>
+            </ul>
         </div>
-        <div class="box">
-            <div class="info">
-                <div onclick="">Home</div>
-                <div>Mange Profile</div>
-                <div>Certificates</div>
-            </div>
-            <div class="details">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-            </div>
+        <div class="content">
+            <section id="dashboard" class="active">
+                <div class="dashboard_nav">
+                    <h2>Welcome, <%=user.name%></h2>
+                    <p id="aadharBox">Aadhar No. <%=user.aadhar.toString().replace(/(\d{4})(?=\d)/g, '$1 - ').trim()%></p>
+                </div>
+                <div class="overview">
+                    <div class="overview-card">
+                        <h3>Blood Type</h3>
+                        <p><%=user.bloodgroup%></p>
+                    </div>
+                    <div class="overview-card">
+                        <h3>Total Donations</h3>
+                        <p><%=user.total_donation%></p>
+                    </div>
+                </div>
+                <div class="upcoming_donation">
+                    <p> Recent Requests for Blood Donation Appointments <span>*</span></p><br>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Application Date</th>
+                                <th>Blood Bank Name</th>
+                                <th>Contact_No</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (donationData.length > 0) { %>
+                                <% donationData.forEach(donation => { %>
+                                    <tr>
+                                        <td><%= donation.application_date.toString().substring(0,15) %></td>
+                                        <td><%= donation.Blood_Bank_Name %></td>
+                                        <td><%= donation.Contact_No %></td>
+                                        <td><%= donation.Email %></td>
+                                        <td><%= donation.Address %></td>
+                                        <td><%= donation.status %></td>
+                                        <td><a href='/donor/dashboard/drop_request/<%=user.id%>'><button class="accept-button">Drop Request !</button></a></td>
+                                    </tr>
+                                <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="7">No upcoming donations scheduled.</td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="donation-history">
+                <h2>Donation History</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Donation Date</th>
+                            <th>Blood Bank Name</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4">No Donation Done Yet !</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section id="donation-repository">
+                <form action="/donor/bankdetails" method="post">
+                    <div class="form-group">
+                        <label for="state">Select State <span>*</span><br><br>
+                            <select id="state" name="state" required>
+                                <option value="" disabled selected>Select a State</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            </select>
+                        </label>
+                        <label for="district">Select District <span>*</span><br><br>
+                            <select id="district" name="district" required>
+                                <option value="" disabled selected>Select a District</option>
+                                <option value="Agar Malwa">Agar Malwa</option>
+                                <option value="Alirajpur">Alirajpur</option>
+                                <option value="Anuppur">Anuppur</option>
+                                <option value="Ashok Nagar">Ashok Nagar</option>
+                                <option value="Balaghat">Balaghat</option>
+                                <option value="Barwani">Barwani</option>
+                                <option value="Betul">Betul</option>
+                                <option value="Bhind">Bhind</option>
+                                <option value="Bhopal">Bhopal</option>
+                                <option value="Burhanpur">Burhanpur</option>
+                                <option value="Chhatarpur">Chhatarpur</option>
+                                <option value="Chhindwara">Chhindwara</option>
+                                <option value="Damoh">Damoh</option>
+                                <option value="Datia">Datia</option>
+                                <option value="Dewas">Dewas</option>
+                                <option value="Dhar">Dhar</option>
+                                <option value="Guna">Guna</option>
+                                <option value="Gwalior">Gwalior</option>
+                                <option value="Harda">Harda</option>
+                                <option value="Hoshangabad">Hoshangabad</option>
+                                <option value="Indor">Indore</option>
+                                <option value="Jabalpur">Jabalpur</option>
+                                <option value="Jhabua">Jhabua</option>
+                                <option value="Katni">Katni</option>
+                                <option value="Khandwa">Khandwa</option>
+                                <option value="Mandla">Mandla</option>
+                                <option value="Mandsaur">Mandsaur</option>
+                                <option value="Morena">Morena</option>
+                                <option value="Narsinghpur">Narsinghpur</option>
+                                <option value="Neemuch">Neemuch</option>
+                                <option value="Panchmadai">Panchmadai</option>
+                                <option value="Panna">Panna</option>
+                                <option value="Raisen">Raisen</option>
+                                <option value="Rajgarh">Rajgarh</option>
+                                <option value="Ratlam">Ratlam</option>
+                                <option value="Rewa">Rewa</option>
+                                <option value="Sagar">Sagar</option>
+                                <option value="Satna">Satna</option>
+                                <option value="Sehore">Sehore</option>
+                                <option value="Shahdol">Shahdol</option>
+                                <option value="Shajapur">Shajapur</option>
+                                <option value="Sheopur">Sheopur</option>
+                                <option value="Sidhi">Sidhi</option>
+                                <option value="Singrauli">Singrauli</option>
+                                <option value="Tikamgarh">Tikamgarh</option>
+                                <option value="Ujjain">Ujjain</option>
+                                <option value="Umaria">Umaria</option>
+                                <option value="Vidisha">Vidisha</option>
+                            </select>
+                        </label>
+                    </div>
+                    <button class="button">Search</button>
+                </form>
+                <div class="bank_details">
+                    <table>
+                        <thead>
+                            <th>Blood Bank Name</th>
+                            <th>Category</th>
+                            <th>Email</th>
+                            <th>Contact No.</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>  
+                            <tr>
+                                <td colspan="6">No Blood Bank Available Here!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="profile">
+                <div class="profile_box">
+                    <form action="/donor/dashboard/update/<%=user.id%>" id="update_profile" method="post">
+                        <label for="Email">Email <br><br>
+                            <input type="text" name="email" value="<%=user.email%>" required>
+                        </label>
+                        <label for="name">Name <br> <br>
+                            <input type="text" name="name" value="<%=user.name%>" required>
+                        </label>
+                        <label for="age">Moblie No. <br><br>
+                            <input type="text" name="phone" value="<%=user.phone%>" maxlength="10" required>
+                        </label>
+                        <label for="address">Address <br><br>
+                            <input type="text" name="address" value="<%=user.address%>" required>
+                        </label><br>
+                        <span><label for="">Change Password</label> <i class="fa-solid fa-toggle-off" onclick="change()"></i></span>
+                        <div class="password_box" id="password_active">
+                            <label for="password">
+                                <input type="text" id="password" name="password"  placeholder="Enter new Password" >
+                            </label><br><br>
+                            <label for="confrim_password">
+                                <input type="text" id="comfirm_password" name="re_password" placeholder="Comfirm password">
+                            </label>
+                        </div>
+                        <button class="accept-button">Update Profile</button>
+                    </form>
+                </div>
+            </section>
         </div>
     </div>
-
-<%-include('footer.ejs')%>
+    <script>
+        let msg=<%-JSON.stringify(message||[])%>;
+        if(msg&&msg.length>0){
+            alert(msg);
+        }
+        let data=<%- JSON.stringify(bankdata||[])%>;
+        if(data.length>0)
+        document.getElementsByClassName('bank_details')[0].querySelector('tbody').innerHTML=''
+        for(let i=0; i<data.length; i++){
+            const row = document.createElement('tr');
+            for(let key in data[i]){
+                if(key=='Blood_Bank_Name'||key=='Category'||key=='Email'||key=='Contact_No'||key=='Address'){
+                    let cell = document.createElement('td');   
+                    cell.textContent = data[i][key]  
+                    row.appendChild(cell);
+                }
+            }
+            let cell=document.createElement('td');
+            let btn1=document.createElement('button');
+            let A=document.createElement('a');
+            A.href=`/donor/dashboard/donate/${data[i]['bank_id']}/<%=user.id%>`;
+            btn1.className='accept-button';
+            btn1.innerHTML="Donate Here!";
+            A.appendChild(btn1);
+            cell.appendChild(A)
+            row.appendChild(cell);
+            document.getElementsByClassName('bank_details')[0].querySelector('tbody').appendChild(row);
+        }
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+        function change() {
+            let classdata=document.getElementsByClassName('fa-solid')[0].classList;
+            classdata.toggle('fa-toggle-on');
+            classdata.toggle('fa-toggle-off');
+            document.getElementById('password_active').classList.toggle('password_box')
+        }
+        document.getElementById('update_profile').addEventListener('submit',function(e){
+            e.preventDefault();
+            if(password.value!=comfirm_password.value){
+                alert('Password and Comfirm Password do not match');
+                return;
+            }
+            this.submit();
+            //code to update profile
+        })
+    </script>
+</body>
+</html>

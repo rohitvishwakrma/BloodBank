@@ -12,6 +12,7 @@ let bank = require('./routes/bank.js');
 let camp = require('./routes/camp.js');
 let connection = require('./database.js');
 let port=process.env.PORT||3000;
+let flash = require('connect-flash');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -28,6 +29,11 @@ let sessionOption = {
 };
 
 app.use(session(sessionOption))
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.message = req.flash('message');
+  next();
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -59,7 +65,7 @@ app.use('/bank', bank);
 app.use('/camp',camp);
 
 // Default routes
-app.get("/home", function (req, res) {
+app.get("/", function (req, res) {
   res.render("home.ejs");
 });
 

@@ -1,0 +1,158 @@
+<title>Rakt Daan</title>
+<link rel="shortcut icon" href="../blood.svg" type="image/x-icon">
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Arial', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        display: flex;
+        width: 70%;
+        height: 80vh; /* Adjust height as needed */
+        border-radius: 10px;
+        overflow: hidden; /* Prevent overflow from child elements */
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-container {
+        width: 40%; /* Left side for login form */
+        padding: 40px;
+        background: linear-gradient(135deg, rgba(255, 0, 0, 0.8), rgba(255, 100, 100, 0.8));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        position: relative;
+    }
+
+    h1 {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 20px;
+        font-size: 28px; /* Increased font size for emphasis */
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+        width: 20vw; /* Full width for input groups */
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #fff; /* White text for contrast */
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        border-color: #ffcc00; /* Gold color on focus */
+        outline: none;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    button {
+        width: 10vw;
+        padding: 12px;
+        background-color: #ffcc00; /* Gold color for button */
+        color: #333;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+        background-color: #e6b800; /* Darker gold on hover */
+        transform: scale(1.05); /* Slightly enlarge button on hover */
+    }
+
+    .image-container {
+        width: 60%; /* Right side for the GIF image */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('banklogin.gif'); /* Ensure this image is accessible */
+        background-size: cover;
+        background-position: center;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .image-container img {
+        max-width: 100%; /* Responsive image */
+        height: auto; 
+        border-radius: 10px; /* Rounded corners for the GIF */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow for the image */
+    }
+
+    a{
+        margin-top: 15px;
+        color: yellow;
+    }
+
+    /* Additional styling for visual appeal */
+    .login-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.2); /* Dark overlay */
+        border-radius: 10px; /* Match the border radius */
+        z-index: 0;
+    }
+
+    .login-container > * {
+        position: relative; /* Ensure children are above the overlay */
+        z-index: 1;
+    }
+</style>
+
+<div class="container">
+    <div class="login-container">
+        <h1>Blood Bank Login</h1>
+        <form action="/bank/dashboard" method="get">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" >
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <a href="/bank/Registration">Register Here For New Blood Bank</a>
+        <a href="/">Go To Home</a><!-- Changed to link style -->
+    </div>
+    <div class="image-container">
+        <img src="banklogin.gif" alt="Blood Donation GIF"> <!-- Ensure this image is accessible -->
+    </div>
+</div>

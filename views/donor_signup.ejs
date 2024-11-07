@@ -127,11 +127,21 @@
                 <tr>
                     <td>
                         <label for="name">Name:<span>*</span></label><br>
-                        <input type="text" id="name" name="name" placeholder="Enter Name" required autocomplete="none" >
+                        <input type="text" id="name" name="name" placeholder="Enter Full Name" required autocomplete="none" >
                     </td>
                     <td>
                         <label for="age">Age:<span>*</span></label><br>
                         <input type="text" id="dob" maxlength="2" placeholder="Enter Age" name="age" required autocomplete="off">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="aadhar">Aadhar No. <span>*</span></label><br>
+                        <input type="text" id="aadhar" name="aadhar" placeholder="Enter Your Aadhar No." maxlength="12" required autocomplete="none">
+                    </td>
+                    <td>
+                        <label for="fathername">Father's Name <span>*</span></label><br>
+                        <input type="text" id="father_name" name="father_name" placeholder="Enter Your Father Name" required autocomplete="none">
                     </td>
                 </tr>
                 <tr>
@@ -148,14 +158,14 @@
                         <label for="bloodgroup">Blood Group:<span>*</span></label><br>
                         <select id="bloodgroup" name="bloodgroup" required>
                             <option value="">Select</option>
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
+                            <option value="A+">A +ve</option>
+                            <option value="A-">A -ve</option>
+                            <option value="B+">B +ve</option>
+                            <option value="B-">B -ve</option>
+                            <option value="AB+">AB +ve</option>
+                            <option value="AB-">AB -ve</option>
+                            <option value="O+">O +ve</option>
+                            <option value="O-">O -ve</option>
                             <option value="N/A">N/A</option>
                         </select>
                     </td>
@@ -206,7 +216,7 @@
 </div>
 <script>
     function refreash(){
-        let arr=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9'];
+        let arr=['a','b','c','d','e','f','g','h','j','k','m','n','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','J','K','L','M','N','P','Q','R','S','T','U','V','W','X','Y','Z','1','2','3','4','5','6','7','8','9'];
         let random_string='';
         for(let i=0;i<6;i++){
             random_string+=arr[Math.floor(Math.random()*arr.length)];

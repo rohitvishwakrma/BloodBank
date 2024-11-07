@@ -64,7 +64,8 @@
     }
     .blood_details,.camp_details{
         width: 90vw;
-        min-height: 60vh;
+        height: 60vh;
+        overflow-x: hidden;
         position: absolute;
         background-color: white;
     }
@@ -76,6 +77,10 @@
     }
     .details table{
         width: 90vw;
+    }
+    .details thead{
+        position: sticky;
+        top:0vh;
     }
     .details th{
         background-color: #BF222B;

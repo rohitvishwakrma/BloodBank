@@ -10,9 +10,9 @@ const connection = mysql.createConnection({
 });
 connection.connect((err) => {
   if (err) {
-      console.error('Error connecting to the database:', err.stack);
+      console.error('Error connecting to the database:');
       return;
   }
-  console.log('Connected to the database.');
+  console.log('Connected to the database');
 });
 module.exports = connection;
