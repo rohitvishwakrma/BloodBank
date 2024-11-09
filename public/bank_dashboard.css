@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+.sidebar {
+    width: 20vw;
+    color: white;
+    height: 100vh;
+    background-color: #a93226;
+    padding: 6vh;
+}
+.sidebar h3 {
+    text-align: center;
+    margin-bottom: 5vh;
+}
+.sidebar ul li {
+    list-style: none;
+}
+.sidebar li {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+.sidebar li:hover {
+    background-color: #c0392b;
+    cursor: pointer;
+}
+.content {
+    min-height: 100vh;
+    width: 80vw;
+    background-color: #f4f4f4;
+    padding: 5vh 2vh;
+}
+section {
+    display: none;
+    overflow: auto;
+}
+.active {
+    display: block;
+}
+a{
+    text-decoration: none;
+}
+th{
+    background-color: #BF222B;
+    width: 80vw;
+    color: white;
+    height: 6vh;
+}
+
+td{
+    height: 7vh;
+    background-color:  #d0e9f9;
+    color: #333;
+    text-align: center;
+}
+#dashboard,#donation-repository,#profile,#blood-inventory,#report,#upcoming-donation{
+    height: 100%;
+    background-color: white;
+    padding: 2vh;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: auto;
+}
+.accept-button{
+    background-color: #28a745; /* Green for Accept */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-right: 1vh;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.accept-button:hover{
+    background-color: #218838;
+}
+.reject-button {
+    background-color: #dc3545; /* Red for Reject */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 1vh;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.reject-button:hover {
+    background-color: #c82333; /* Darker red */
+}
+input {
+    width: 20vw;
+    height: 5vh;
+    padding: 10px;
+    background-color: #e6f7ff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+input:focus {
+    border-color: #5cb85c;
+    outline: none;
+}
+.button {
+    background-color: #5a9; /* Subtle green */
+    color: white;
+    border: none;
+    padding: 10px 20px; /* Smaller padding */
+    font-size: 14px; /* Slightly smaller font */
+    border-radius: 4px; /* Softer corners */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s ease-in-out;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    background-color: #499; /* Darker green on hover */
+}
+.cell_input{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+form{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    gap: 2.5vh;
+}
+#profile form{
+    flex-direction: column;
+}
+span{
+    height: 5vh;
+    width: 15vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#profile input {
+    width: 60vw;
+    height: 5vh;
+    padding: 10px;
+    background-color: #e6f7ff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+#profile input:focus {
+    border-color: #5cb85c;
+    outline: none;
+}
+.password_box{
+    display: none;
+}
+.fa-solid{
+    color: #007BFF;
+    transform: scale(2,2);
+}
+.fa-pen-to-square{
+    font-size: 8px;
+    color: gray;
+    cursor: pointer;
+}
+.edit_blood{
+    display: flex;
+    align-items: center;
+    padding: 0vh 4vh;
+    justify-content: space-between;
+}
+select{
+    width: 20vw;
+    height: 5vh;
+    padding: 10px;
+    background-color: #e6f7ff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+select:focus {
+    border-color: #5cb85c;
+    outline: none;
+}
+.cell_Action{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+

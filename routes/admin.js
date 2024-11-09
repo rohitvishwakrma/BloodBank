@@ -76,7 +76,7 @@ router.get("/dashboard",async function (req, res) {
     }
         
     else 
-        res.redirect("admin/login");
+        res.redirect("/admin/login");
 });
 router.get("/signup",function(req,res){
     res.render('admin_signup.ejs');
@@ -94,6 +94,89 @@ router.post("/signup",async function(req,res){
         res.redirect("/admin/signup");
     }
 });
+router.get('/acceptBloodBank/:bank_id',async function(req,res){
+    try{
+        let bank_id=req.params.bank_id;
+        let sql='UPDATE bank SET Action="accepted" WHERE bank_id=?';
+        connection.query(sql,[bank_id],function(err,result){
+            if(err){
+                throw err;
+            }
+        });
+        sql='insert into bank_admin (username,password,bank_id) values (?,?,?)';
+        let password=await bcrypt.hash('123',10);
+        let query=await new Promise(function(resolve, reject){
+            connection.query('select * from bank where bank_id = ?',[bank_id],function(err,result){
+                if(err)
+                    reject(err);
+                else
+                    resolve(result[0]);
+            })
+        })
+        connection.query(sql,[query.Email,password,bank_id],function(err,result){
+            if(err){
+                throw err;
+            }
+        });
+        console.log(bank_id)
+        res.redirect('/admin/dashboard');
+    }
+    catch(err){
+        console.log('error in admin accept blood bank');
+        res.redirect('/admin/dashboard');
+    }
+})
+router.get('/rejectBloodBank/:bank_id',function(req,res){
+    try{
+        let bank_id=req.params.bank_id;
+        let sql='delete from bank where bank_id=?';
+        connection.query(sql,[bank_id],function(err,result){
+            if(err){
+                throw err;
+            }
+        });
+        res.redirect('/admin/dashboard');
+    }
+    catch(err){
+        console.log('error in admin reject blood bank');
+        res.redirect('/admin/dashboard');
+    }
+})
+
+router.get("/acceptCamp/:camp_id",function(req,res){
+    try{
+        let camp_id=req.params.camp_id;
+        let sql='UPDATE blood_camp SET Action="accepted" WHERE camp_id=?';
+        connection.query(sql,[camp_id],function(err,result){
+            if(err){
+                throw err;
+            }
+        });
+        res.redirect('/admin/dashboard');
+    }
+    catch(err){
+        console.log('error in admin accept blood camp');
+        res.redirect('/admin/dashboard');
+    }
+})
+
+router.get('/rejectCamp/:camp_id',function(req,res){
+    try{
+        let camp_id=req.params.camp_id;
+        let sql='delete from blood_camp where camp_id=?';
+        connection.query(sql,[camp_id],function(err,result){
+            if(err){
+                throw err;
+            }
+        });
+        res.redirect('/admin/dashboard');
+    }
+    catch(err){
+        console.log('error in admin reject blood camp');
+        res.redirect('/admin/dashboard');
+    }
+})
+
 
 router.get('/logout', function (req, res) {
     req.logout(function (err) {

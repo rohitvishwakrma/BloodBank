@@ -198,61 +198,81 @@
     if(data.length>0)
      document.querySelector('.blood_details table tbody').innerHTML='';
     for(let i=0;i<data.length;i++){
-        let row = document.createElement('tr');
-        for(let key in data[i]){
-            if(key=='bank_id'||key=='Blood_Bank_Name'||key=='Category'||key=='state'||key=='district'||key=='Email'||key=='Licence_No'||key=='License_Issue'||key=='License_Expiry'){
-                let cell = document.createElement('td');
-                if(key=='License_Issue'||key=='License_Expiry')
-                    cell.textContent = data[i][key].substring(0,10);
-                else    
-                    cell.textContent = data[i][key]  
-                row.appendChild(cell);
+        if(data[i]['Action']=='N/A'){
+            let row = document.createElement('tr');
+            for(let key in data[i]){
+                if(key=='bank_id'||key=='Blood_Bank_Name'||key=='Category'||key=='state'||key=='district'||key=='Email'||key=='Licence_No'||key=='License_Issue'||key=='License_Expiry'){
+                    let cell = document.createElement('td');
+                    if(key=='License_Issue'||key=='License_Expiry')
+                        cell.textContent = data[i][key].substring(0,10);
+                    else    
+                        cell.textContent = data[i][key]  
+                    row.appendChild(cell);
+                }
             }
+            let cell=document.createElement('td');
+            let divs=document.createElement('div');
+            divs.className='button-container';
+            let btn1=document.createElement('button');
+            btn1.className='accept-button';
+            btn1.innerHTML="Accept";
+            btn1.onclick=function() {
+                if(confirm('Are you sure, you want to accept this blood bank request?'))
+                    window.location.href = `/admin/acceptBloodBank/${data[i]['bank_id']}`
+            }
+            let btn2=document.createElement('button');
+            btn2.className='reject-button';
+            btn2.innerHTML="Reject";
+            btn2.onclick=function() {
+                if(confirm('Are you sure, you want to reject this blood bank request?'))
+                    window.location.href = `/admin/rejectBloodCamp/${data[i]['bank_id']}`
+            }
+            divs.appendChild(btn1);
+            divs.appendChild(btn2);
+            cell.appendChild(divs);
+            row.appendChild(cell);
+            document.querySelector('.blood_details table tbody').appendChild(row);
         }
-        let cell=document.createElement('td');
-        let divs=document.createElement('div');
-        divs.className='button-container';
-        let btn1=document.createElement('button');
-        btn1.className='accept-button';
-        btn1.innerHTML="Accept";
-        let btn2=document.createElement('button');
-        btn2.className='reject-button';
-        btn2.innerHTML="Reject";
-        divs.appendChild(btn1);
-        divs.appendChild(btn2);
-        cell.appendChild(divs);
-        row.appendChild(cell);
-        document.querySelector('.blood_details table tbody').appendChild(row);
     }
     let campdata=<%- JSON.stringify(campdetails||[])%>;
     if(campdata.length>0)
         document.querySelector('.camp_details table tbody').innerHTML='';
     for(let i=0;i<campdata.length;i++){
-        let row = document.createElement('tr');
-        for(let key in campdata[i]){
-            if(key=='camp_id'||key=='organization_type'||key=='camp_name'||key=='state'||key=='camp_date'||key=='district'||key=='camp_address'||key=='organizer_email_id'||key=='start_time'||key=='end_time'){
-                let cell = document.createElement('td');
-                if(key=='camp_date')
-                    cell.textContent = campdata[i][key].substring(0,10);
-                else    
-                    cell.textContent = campdata[i][key]  
-                row.appendChild(cell);
+        if(campdata[i]['action']=='N/A'){
+            let row = document.createElement('tr');
+            for(let key in campdata[i]){
+                if(key=='camp_id'||key=='organization_type'||key=='camp_name'||key=='state'||key=='camp_date'||key=='district'||key=='camp_address'||key=='organizer_email_id'||key=='start_time'||key=='end_time'){
+                    let cell = document.createElement('td');
+                    if(key=='camp_date')
+                        cell.textContent = campdata[i][key].substring(0,10);
+                    else    
+                        cell.textContent = campdata[i][key]  
+                    row.appendChild(cell);
+                }
             }
+            let cell=document.createElement('td');
+            let divs=document.createElement('div');
+            divs.className='button-container';
+            let btn1=document.createElement('button');
+            btn1.className='accept-button';
+            btn1.innerHTML="Accept";
+            btn1.onclick=function(){
+                if(confirm('Are you sure, you want to accept this blood camp request?'))
+                    window.location.href = `/admin/acceptCamp/${campdata[i]['camp_id']}`;
+            }
+            let btn2=document.createElement('button');
+            btn2.className='reject-button';
+            btn2.innerHTML="Reject";
+            btn2.onclick=function(){
+                if(confirm('Are you sure, you want to reject this blood camp request?'))
+                    window.location.href = `/admin/rejectCamp/${campdata[i]['camp_id']}`;
+            }
+            divs.appendChild(btn1);
+            divs.appendChild(btn2);
+            cell.appendChild(divs);
+            row.appendChild(cell);
+            document.querySelector('.camp_details table tbody').appendChild(row);
         }
-        let cell=document.createElement('td');
-        let divs=document.createElement('div');
-        divs.className='button-container';
-        let btn1=document.createElement('button');
-        btn1.className='accept-button';
-        btn1.innerHTML="Accept";
-        let btn2=document.createElement('button');
-        btn2.className='reject-button';
-        btn2.innerHTML="Reject";
-        divs.appendChild(btn1);
-        divs.appendChild(btn2);
-        cell.appendChild(divs);
-        row.appendChild(cell);
-        document.querySelector('.camp_details table tbody').appendChild(row);
     }
     function first() {
         document.querySelector('.blood_details').style.zIndex = 0;

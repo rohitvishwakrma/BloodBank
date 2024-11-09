@@ -54,7 +54,7 @@
         font-weight: bold;
     }
 
-    input[type="text"],
+    input[type="email"],
     input[type="password"] {
         width: 100%;
         padding: 12px;
@@ -64,7 +64,7 @@
         transition: border-color 0.3s;
     }
 
-    input[type="text"]:focus,
+    input[type="email"]:focus,
     input[type="password"]:focus {
         border-color: #ffcc00; /* Gold color on focus */
         outline: none;
@@ -138,14 +138,14 @@
 <div class="container">
     <div class="login-container">
         <h1>Blood Bank Login</h1>
-        <form action="/bank/dashboard" method="get">
+        <form action="/bank/login" method="post">
             <div class="input-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" >
+                <input type="email" id="username" name="username" required autocomplete="off">
             </div>
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password">
+                <input type="password" id="password" name="password" required  autocomplete="off">
             </div>
             <button type="submit">Login</button>
         </form>

@@ -24,7 +24,10 @@
             <section id="dashboard" class="active">
                 <div class="dashboard_nav">
                     <h2>Welcome, <%=user.name%></h2>
-                    <p id="aadharBox">Aadhar No. <%=user.aadhar.toString().replace(/(\d{4})(?=\d)/g, '$1 - ').trim()%></p>
+                    <div class="nav_heading">
+                        <p id="aadharBox">Aadhar No. <%=user.aadhar.toString().replace(/(\d{4})(?=\d)/g, '$1 - ').trim()%></p>
+                        <p id="last_login"></p>
+                    </div>
                 </div>
                 <div class="overview">
                     <div class="overview-card">
@@ -174,36 +177,38 @@
                 </div>
             </section>
             <section id="profile">
-                <div class="profile_box">
+                
                     <form action="/donor/dashboard/update/<%=user.id%>" id="update_profile" method="post">
                         <label for="Email">Email <br><br>
-                            <input type="text" name="email" value="<%=user.email%>" required>
+                            <input type="text" name="email" value="<%=user.email%>" required autocomplete="none">
                         </label>
                         <label for="name">Name <br> <br>
-                            <input type="text" name="name" value="<%=user.name%>" required>
+                            <input type="text" name="name" value="<%=user.name%>" required autocomplete="none">
                         </label>
                         <label for="age">Moblie No. <br><br>
-                            <input type="text" name="phone" value="<%=user.phone%>" maxlength="10" required>
+                            <input type="text" name="phone" value="<%=user.phone%>" maxlength="10" required autocomplete="none">
                         </label>
                         <label for="address">Address <br><br>
-                            <input type="text" name="address" value="<%=user.address%>" required>
+                            <input type="text" name="address" value="<%=user.address%>" required autocomplete="none">
                         </label><br>
                         <span><label for="">Change Password</label> <i class="fa-solid fa-toggle-off" onclick="change()"></i></span>
                         <div class="password_box" id="password_active">
                             <label for="password">
-                                <input type="text" id="password" name="password"  placeholder="Enter new Password" >
+                                <input type="text" id="password" name="password"  placeholder="Enter new Password" autocomplete="none">
                             </label><br><br>
                             <label for="confrim_password">
-                                <input type="text" id="comfirm_password" name="re_password" placeholder="Comfirm password">
+                                <input type="text" id="comfirm_password" name="re_password" placeholder="Comfirm password" autocomplete="none">
                             </label>
                         </div>
                         <button class="accept-button">Update Profile</button>
                     </form>
-                </div>
+        
             </section>
         </div>
     </div>
     <script>
+        let date=new Date();
+        document.getElementById('last_login').innerHTML ="Last Login : "+ date.toDateString()+" "+date.toTimeString().toString().substring(0,8);
         let msg=<%-JSON.stringify(message||[])%>;
         if(msg&&msg.length>0){
             alert(msg);
@@ -248,7 +253,11 @@
                 alert('Password and Comfirm Password do not match');
                 return;
             }
-            this.submit();
+            let con=confirm("Are you sure you want to proceed?");
+            if(con)
+                this.submit();
+            else
+                return
             //code to update profile
         })
     </script>

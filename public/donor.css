@@ -177,7 +177,14 @@ a{
 .password_box{
     display: none;
 }
-.profile_box form{
+#profile{
+    height: 100%;
+    background-color: white;
+    padding: 2vh;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+#profile form{
     display: flex;
     height: 100%;
     width: 100%;
@@ -185,14 +192,14 @@ a{
     gap: 2.5vh;
     flex-direction: column;
 }
-.profile_box input{
+#profile input{
     padding: 10px;
     border-radius: 5px;
     width: 50vw;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
 } 
-.profile_box span{
+#profile span{
     height: 5vh;
     width: 15vw;
     display: flex;
@@ -217,4 +224,17 @@ a{
 }
 #aadharBox{
     align-self: last baseline;
+}
+#donation-history{
+    height: 100%;
+    background-color: white;
+    padding: 2vh;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.nav_heading{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: #BF222B;
 }

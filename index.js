@@ -43,7 +43,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(function (user, done) {
     try{
-      const table = user.role === 'donor' ? 'donor' : 'admin';
+      const table = user.role === 'donor' ? 'donor' : user.role === 'bank_admin' ? 'bank_admin' : 'admin';
       connection.query(`SELECT * FROM ${table} WHERE id="${user.id}"`, function (err, result) {
           if (err)
             throw err

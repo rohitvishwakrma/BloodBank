@@ -142,7 +142,7 @@ router.post("/bankdetails",async function(req,res){
     try{
         let {state,district}=req.body;
         bankdata=await new Promise(function(resolve,reject){
-            connection.query(`SELECT * FROM bank WHERE state =? AND district =?`, [state, district], function (err, result) {
+            connection.query(`SELECT * FROM bank WHERE state =? AND district =? and Action = 'accepted'`, [state, district], function (err, result) {
                 if (err) reject(err); // Handle the error
                 else resolve(result);  // Resolve with the result
             });
