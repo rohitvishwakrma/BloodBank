@@ -10,6 +10,7 @@ let admin = require('./routes/admin.js');
 let donor = require('./routes/donor.js');
 let bank = require('./routes/bank.js');
 let camp = require('./routes/camp.js');
+let availability =require('./routes/availability.js')
 let connection = require('./database.js');
 let port=process.env.PORT||3000;
 let flash = require('connect-flash');
@@ -63,6 +64,7 @@ app.use('/admin', admin);
 app.use('/donor', donor);
 app.use('/bank', bank);
 app.use('/camp',camp);
+app.use('/availability', availability);
 
 // Default routes
 app.get("/", function (req, res) {

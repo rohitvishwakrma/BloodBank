@@ -6,17 +6,6 @@ let localpassportdonor = require('passport-local').Strategy;
 let bcrypt = require('bcryptjs');
 let connection = require('../database.js');
 const { route } = require('./admin.js');
-const { console } = require('inspector');
-const bloodInventory = {
-    "A+": 0,
-    "A-": 0,
-    "B+": 0,
-    "B-": 0,
-    "AB+": 0,
-    "AB-": 0,
-    "O+": 0,
-    "O-": 0
-};
 
 
 
@@ -61,6 +50,16 @@ router.get("/dashboard",async function(req,res){
     let bankdata;
     let donordata;
     let donationdata;
+    const bloodInventory = {
+        "A+": 0,
+        "A-": 0,
+        "B+": 0,
+        "B-": 0,
+        "AB+": 0,
+        "AB-": 0,
+        "O+": 0,
+        "O-": 0
+    };
     if (req.isAuthenticated()&& req.user.role === 'bank_admin'){
         try{
             let sql=`select * 
@@ -92,11 +91,32 @@ router.get("/dashboard",async function(req,res){
                     else resolve(result);
                 });
             })
+            sql=`select * from donation_history where bank_id = ${req.user.bank_id}`;
+            let donate_history=await new Promise(function (resolve, reject) {
+                connection.query(sql, function (err, result) {
+                    if (err) reject(err);
+                    else resolve(result);
+                });
+            })
+            let date=new Date();
+            for(let i = 0; i <donate_history.length;i++){
+                for(let key in bloodInventory){
+                    if(donate_history[i]['blood_group']===key&&donate_history[i]['expiry_date']>date)
+                        bloodInventory[key]++;
+                }
+            }
+            for(let key in bloodInventory){
+                sql='update inventory set quantity = ?,last_updated_date = ? where bloodgroup = ? and bank_id=?';
+                connection.query(sql,[bloodInventory[key],new Date(),key,req.user.bank_id], function (err, result) {
+                    if (err) 
+                        throw err
+                })
+            }
         }
         catch(err) {
-            console.log('Error on bank_admin table on blood bank dashboard');
+            console.log('Error on bank_admin table on blood bank dashboard',err);
         }
-        res.render("blood_bank_dashboard.ejs",{bankdata,donordata,donationdata});
+        res.render("blood_bank_dashboard.ejs",{bankdata,donordata,donationdata,bloodInventory});
     }
     else 
         res.redirect('/bank/login');
@@ -205,71 +225,48 @@ router.get("/dashboard/update_blood_group/:donor_id/:blood_group",function(req,r
 router.get("/dashboard/donation_history/:donation_id/:bank_id/:donor_id",async function(req,res){
     try{
         let {donation_id, bank_id,donor_id}=req.params;
-        console.log(donor_id,bank_id,donation_id)
         let sql ='select * from donor where id=?';
-        // let donor_data=await new Promise(function(resolve,reject){
-        //     connection.query(sql,[donor_id],function(err,result){
-        //         if(err)
-        //             reject(err);
-        //         else
-        //             resolve(result[0]);
-        //     })
-        // })
-        // let bloodgroup=donor_data['bloodgroup']
-        // let total_donation=donor_data['total_donation']+1;
-        // sql ='update donor set total_donation =? where id =?';
-        // connection.query(sql,[total_donation,donor_id],function(err,result){
-        //     if(err)
-        //         throw err;
-        // })
-        // sql ='update donation set status ="completed" where id =?'
-        // connection.query(sql,[donation_id],function(err,result){
-        //     if(err)
-        //         throw err;
-        // })
-        // sql ='select donation_date from donation where id =?'
-        // let donation_date=await new Promise(function(resolve, reject) {
-        //     connection.query(sql,[donation_id],function(err,result){
-        //         if(err)
-        //             reject(err);
-        //         else
-        //             resolve(result[0]['donation_date']);
-        //     })
-        // })
-        let expiry_date=new Date();
-        expiry_date.setDate(expiry_date.getDate() + 31);
-        console.log(expiry_date)
-        sql ='insert into donation_history (bank_id,donor_id,donation_id,blood_group,donation_date,expiry_date) values (?,?,?,?,?,?)';
-        connection.query(sql,[bank_id,donor_id,donation_id,bloodgroup,donation_date,expiry_date],function(err,result){
+        let donor_data=await new Promise(function(resolve,reject){
+            connection.query(sql,[donor_id],function(err,result){
+                if(err)
+                    reject(err);
+                else
+                    resolve(result[0]);
+            })
+        })
+        let bloodgroup=donor_data['bloodgroup']
+        let total_donation=donor_data['total_donation']+1;
+        sql ='update donor set total_donation =? where id =?';
+        connection.query(sql,[total_donation,donor_id],function(err,result){
             if(err)
                 throw err;
         })
-        // sql ="select * from donation_history where bank_id=?";
-        // let donation_history=await new Promise(function(resolve, reject){
-        //     connection.query(sql,[bank_id],function(err,result){
-        //         if(err)
-        //             reject(err);
-        //         else
-        //             resolve(result);
-        //     })
-        // })
-        // for(let key in bloodInventory){
-        //     let count=0;
-        //     for(let i=0;i<donation_history.length;i++){
-        //         if(donation_history[i]['blood_group']==key){
-        //             count++;
-        //         }
-        //     }
-        //     bloodInventory[key]=count;
-        // }
-        // console.log(donation_history)
-        // for(let key in bloodInventory){
-        //     console.log(key, bloodInventory[key]);
-        // }
+        sql ='update donation set status ="completed" where id =?'
+        connection.query(sql,[donation_id],function(err,result){
+            if(err)
+                throw err;
+        })
+        sql ='select donation_date from donation where id =?'
+        let donation_date=await new Promise(function(resolve, reject) {
+            connection.query(sql,[donation_id],function(err,result){
+                if(err)
+                    reject(err);
+                else
+                    resolve(result[0]['donation_date']);
+            })
+        })
+        let expiry_date=new Date();
+        expiry_date.setDate(expiry_date.getDate() + 42);
+        let formattedExpiryDate = expiry_date.getFullYear() + '-' +String(expiry_date.getMonth() + 1).padStart(2, '0') + '-' +String(expiry_date.getDate()).padStart(2, '0');
+        sql ='insert into donation_history (bank_id,donor_id,donation_id,blood_group,donation_date,expiry_date) values (?,?,?,?,?,?)';
+        connection.query(sql,[bank_id,donor_id,donation_id,bloodgroup,donation_date,formattedExpiryDate],function(err,result){
+            if(err)
+                throw err;
+        })
         res.redirect("/bank/dashboard")
     }
     catch(err){
-        console.log('Error in bank dashboard donation_history');
+        console.log(err);
         res.redirect("/bank/dashboard")
     }
 })

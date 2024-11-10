@@ -18,7 +18,6 @@
                 <li onclick="showSection('upcoming-donation')">Upcoming Donation</li>
                 <li onclick="showSection('donation-repository')">Donation Request</li>
                 <li onclick="showSection('profile')">Profile</li>
-                <li onclick="showSection('report')">Report</li>
                 <a href="/bank/logout"><li>Logout</li></a>
             </ul>
         </div>
@@ -39,12 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>A+</td>
-                            <td>15 Units</td>
-                            <td>2024-11-06</td>
-                        </tr>
-                        <!-- Add more rows as needed -->
+        
                     </tbody>
                 </table>
             </section>
@@ -116,15 +110,6 @@
                     <button class="accept-button">Update Profile</button>
                 </form>
             </section>
-            <section id="report">
-                <h2>Reports</h2>
-                <p>Generate and view various reports, including inventory, donor statistics, and more.</p>
-                <ul>
-                    <li><a href="#">Monthly Donation Summary</a></li>
-                    <li><a href="#">Inventory Usage Report</a></li>
-                    <li><a href="#">Donor Demographics Report</a></li>
-                </ul>
-            </section>
         </div>
     </div>
     <script>
@@ -132,8 +117,20 @@
         let donation=<%-JSON.stringify(donationdata||[])%>;
         let donor=<%-JSON.stringify(donordata||[])%>;
         let bank=<%-JSON.stringify(bankdata||{})%>;
-        console.log(donation)
-        console.log(donor)
+        let inventory=<%-JSON.stringify(bloodInventory||[])%>;
+        for(let key in inventory){
+            let row=document.createElement('tr');
+            let cell=document.createElement('td');
+            cell.textContent=key;
+            row.appendChild(cell);
+            cell=document.createElement('td');
+            cell.textContent=inventory[key];
+            row.appendChild(cell);
+            cell=document.createElement('td');
+            cell.textContent=date.toLocaleString();
+            row.appendChild(cell);
+            document.querySelector("#blood-inventory tbody").appendChild(row);
+        }
         for(let i=0;i<donation.length;i++){
             if(donation[i]['status']=='pending'){
                 for(let j=0;j<donor.length;j++){

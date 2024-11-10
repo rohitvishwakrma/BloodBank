@@ -8,6 +8,17 @@ let flash = require('connect-flash');
 let connection = require('../database.js');
 const { fchmod } = require('fs');
 const { promises } = require('dns');
+const bloodInventory = {
+    "A+": 0,
+    "A-": 0,
+    "B+": 0,
+    "B-": 0,
+    "AB+": 0,
+    "AB-": 0,
+    "O+": 0,
+    "O-": 0
+};
+
 // Initialize flash messages and static files
 router.use(express.static(path.join(__dirname, "../public")));
 router.use(flash());
@@ -118,6 +129,14 @@ router.get('/acceptBloodBank/:bank_id',async function(req,res){
                 throw err;
             }
         });
+        for(let key in bloodInventory){
+            sql='INSERT INTO inventory (bank_id,bloodgroup,quantity) values (?,?,?)';
+            connection.query(sql,[bank_id,key,bloodInventory[key]],function(err,result){
+                if(err){
+                    throw err;
+                }
+            });
+        }
         console.log(bank_id)
         res.redirect('/admin/dashboard');
     }
