@@ -2,6 +2,7 @@ let express=require('express');
 let router=express.Router({mergeParams:true});
 let mysql=require('mysql2');
 let path=require('path');
+let camp_details;
 
 router.use(express.json())
 router.use(express.static(path.join(__dirname,"../public")));
@@ -28,5 +29,18 @@ router.post("/submition",function(req,res){
         res.redirect("/camp/registration");
     }
 })
-
+router.get("/searchCamp",function(req,res){
+    res.render("camp_search.ejs",{camp_details})
+})
+router.post("/searchCamp/findDetails",async function(req,res){
+    let {state,district,camp_date}=req.body;
+    let sql=`select * from blood_camp where state=? and district=? and camp_date=? and action='accepted'`;
+    camp_details=await new Promise(function(resolve,reject){
+        connection.query(sql,[state, district, camp_date], function (err, result) {
+            if (err) reject(err);
+            else resolve(result);
+        });
+    })
+    res.redirect("/camp/searchCamp")
+})
 module.exports = router;

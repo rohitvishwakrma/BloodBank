@@ -26,7 +26,7 @@ passport.use('donor-local', new localpassportdonor(
                 else return done(null, false);
             });
         } catch (err) {
-            console.log(err);
+            console.log("errorin passport authenication ",err);
             return done(err);
         }
     }
@@ -41,7 +41,7 @@ router.post("/signup", async function (req, res) {
     try {
         let { name, age, gender, bloodgroup, email, phone, address, pin, password,aadhar,father_name } = req.body;
         password = await bcrypt.hash(password, 10);
-        let sql = "INSERT INTO Donor (name, age, gender, bloodgroup, email, phone, address, pin, password,aadhar,father_name) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        let sql = "INSERT INTO donor (name, age, gender, bloodgroup, email, phone, address, pin, password,aadhar,father_name) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         connection.query(sql, [name, age, gender, bloodgroup, email, phone, address, pin, password,aadhar,father_name], function (err, result) {
             if (err) throw err;
             res.redirect('/donor/login');
@@ -83,7 +83,7 @@ router.get("/dashboard",async function (req, res) {
             })
         }
         catch(err){
-            console.log("error on donation table on donor dashboard");
+            console.log("error on donation table on donor dashboard",err);
         }
         res.render("donor_dashboard.ejs", {user: req.user,bankdata,donationData});
     }
@@ -133,7 +133,7 @@ router.get("/dashboard/donate/:bank_id/:donor_id",async function(req,res){
         res.redirect('/donor/dashboard');
     }
     catch(err){
-        console.log("error on donation table on donor dashboard");
+        console.log("error on donation table on donor dashboard",err);
         res.redirect('/donor/dashboard')
     }
 
@@ -150,7 +150,7 @@ router.post("/bankdetails",async function(req,res){
         res.redirect('/donor/dashboard')
     }
     catch(err){
-        console.log("error on fetch bank data on donor dashboard");
+        console.log("error on fetch bank data on donor dashboard",err);
     }
 })
 router.get("/dashboard/drop_request/:donor_id",function(req,res){

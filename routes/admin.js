@@ -137,11 +137,10 @@ router.get('/acceptBloodBank/:bank_id',async function(req,res){
                 }
             });
         }
-        console.log(bank_id)
         res.redirect('/admin/dashboard');
     }
     catch(err){
-        console.log('error in admin accept blood bank');
+        console.log('error in admin accept blood bank',err);
         res.redirect('/admin/dashboard');
     }
 })
@@ -157,7 +156,7 @@ router.get('/rejectBloodBank/:bank_id',function(req,res){
         res.redirect('/admin/dashboard');
     }
     catch(err){
-        console.log('error in admin reject blood bank');
+        console.log('error in admin reject blood bank',err);
         res.redirect('/admin/dashboard');
     }
 })
@@ -174,7 +173,7 @@ router.get("/acceptCamp/:camp_id",function(req,res){
         res.redirect('/admin/dashboard');
     }
     catch(err){
-        console.log('error in admin accept blood camp');
+        console.log('error in admin accept blood camp',err);
         res.redirect('/admin/dashboard');
     }
 })
@@ -191,7 +190,7 @@ router.get('/rejectCamp/:camp_id',function(req,res){
         res.redirect('/admin/dashboard');
     }
     catch(err){
-        console.log('error in admin reject blood camp');
+        console.log('error in admin reject blood camp',err);
         res.redirect('/admin/dashboard');
     }
 })

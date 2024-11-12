@@ -1,20 +1,153 @@
 <link rel="stylesheet" type="text/css" href="style.css">
+
 <%- include('header') %>
+<style>
+    .text-center{
+        perspective: 100px;
+    }
+    .card-container {
+        display: none; /* Hide cards by default */
+        background-color: #fff;
+        border: 0px solid;
+        height: 25vh;
+        
+        border-radius: 10px;
+        box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
+        margin-top: 20px;
+        padding: 20px; /* Hide cards by default */
+    }
+    .card-container.active {
+        display: block; /* Show only the active card */
+    }
+    .text-center{
+        display: flex;
+    }
+    .blood-btn {
+        margin: 0.5rem;
+        font-weight: 600;
+        border: 0px solid;
+        background-color: white;
+        outline: 1px solid red;
+        border-radius: 1rem;
+        height: 6vh;
+        width: 8vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .blood-btn:hover{
+        background-color: #BF222B;
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 0 20px #BF222B;
+        cursor: pointer;
+    }
+    .card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0px 16px lightgreen;
+        transition: transform 0.3s;
+        line-height: 5vh;
+    }
+    .card:hover {
+        transform: translateZ(10px);
+        box-shadow: 0 0px 24px rgb(146, 250, 146);
+    }
+    .card-container h3{
+        color:#c0392b;
+        font-size: 22px;
+        transform: scale(1,1.2);
+        word-spacing: 2px;
+        letter-spacing: 1px;
+    }
+    .card-container p{
+        color: #333;
+        font-size: 18px;
+    }
+    .mb-4{
+        transform: scale(1,1.2);
+        letter-spacing: 2px;
+    }
+    .containermy-4{
+        height: 100%;
+        width: 100%;
+        padding: 3vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    /* Container for the slider */
+    .slider_container {
+        width: 100vw;
+        height: 70vh; /* Set a height for the slider */
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Slider holds the images */
+    .slider {
+        display: flex;
+        width: 100vw;
+        height: 70vh; /* 3 images, each 100% of container */
+        transition: transform 1s ease-in-out; /* Smooth transition */
+    }
+
+   
+    .slider img {
+        width: 100vw;
+        height: 70vh;
+        object-fit: cover; 
+    }
+
+    /* Dot navigation */
+    .dot-container {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        z-index: 10;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .dot.active {
+        background-color: #c0392b;
+    }
+
+    .dot:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+  
+</style>
 <div class="slider_container">
     <div class="slider">
-        <img src="home.jpeg" alt="">
-        <img src="home3.jpeg" alt="">
+        <img src="home7.png" alt="">
+        <img src="header8.png" alt="">
+        <img src="header9.png" alt="">
+    </div>
+    <div class="dot-container">
+        <!-- Dot buttons will be created here dynamically -->
     </div>
 </div>
 <div class="link_container">
     <div style="background-color: brown;">
-        <a href="/availability">Blood Availability</a>
+        <a href="/availability/dashboard">Search Blood Availability</a>
     </div>
     <div style="background-color: #2891C0;">
         <a href="/bank/Registration">Register Blood Bank</a>
     </div>
     <div style="background-color: Green;">
-        <a href="/camp">Search Donation Camp</a>
+        <a href="/camp/searchCamp">Search Donation Camp</a>
     </div>
     <div>
         <a href="/donor/login">Donor Login</a>
@@ -24,65 +157,142 @@
     </div>
 </div>
 <div class="table_container">
-    <h1>About Donation</h1>
     <div class="table_part">
-        <div class="table_img">
-            <img src="image6.png" alt="">
-            <p>After donating blood, the body works to replenish the blood loss. This stimulates the production of new blood cells and in turn, helps in maintaining good health.</p>
-        </div>
         <div class="table_box">
-            <table>
-                <tr>
-                    <th colspan="3">Compatible Blood Type Donors</th>
-                </tr>
-                <tr>
-                    <td style="font-size: 18px;"><b>Blood Type</b></td>
-                    <td style="font-size: 18px;"><b>Donate Blood To</b></td>
-                    <td style="font-size: 18px;"><b>Receive Blood From</b></td>
-                </tr>
-                <tr>
-                    <td style="color: brown;font-weight:900; font-size:18px;">A+</td>
-                    <td>A+ AB+</td>
-                    <td>A+ A- O+ O-</td>
-                </tr>
-                <tr>
-                    <td style="color: brown;font-weight:900; font-size:18px;">B+</td>
-                    <td>B+ AB+</td>
-                    <td>B+ B- O+ O-</td>
-                </tr>
-                <tr>
-                    <td style="color: brown;font-weight:900; font-size:18px;">AB+</td>
-                    <td>AB+</td>
-                    <td>Everyone</td>
-                </tr>
-                <tr>
-                    <td style="color: brown;font-weight:900; font-size:18px;" style="color: brown;font-weight:900; font-size:18px;">O+</td>
-                    <td>O+ A+ B+ AB+</td>
-                    <td>O+ O-</td>
-                </tr>
-                <tr>
-                    <td style="color: brown;font-weight:900; font-size:18px;" >A-</td>
-                    <td>A+ A- AB+ AB-</td>
-                    <td>A- O-</td>
-                </tr>
-                <tr>
-                    <td style="color: brown;font-weight:900; font-size:18px;">B-</td>
-                    <td>B+ B- AB+ AB-</td>
-                    <td>B- O-</td>
-                </tr>
-                <tr>
-                    <td style="color: brown;font-weight:900; font-size:18px;">AB-</td>
-                    <td>AB+ AB-</td>
-                    <td>AB- A- B- O-</td>
-                </tr>
-                <tr>
-                    <td style="color: brown;font-weight:900; font-size:18px;">O-</td>
-                    <td>Everyone</td>
-                    <td>O-</td>
-                </tr>
-            </table>
+            <div class="containermy-4">
+                <h2 class="text-center mb-4">Compatible Blood Type Donors</h2>
+                <!-- Blood Type Buttons -->
+                <div class="text-center">
+                    <button class=" blood-btn" onclick="showBloodType('A+')">A+</button>
+                    <button class=" blood-btn" onclick="showBloodType('B+')">B+</button>
+                    <button class=" blood-btn" onclick="showBloodType('AB+')">AB+</button>
+                    <button class=" blood-btn" onclick="showBloodType('O+')">O+</button>
+                    <button class=" blood-btn" onclick="showBloodType('A-')">A-</button>
+                    <button class=" blood-btn" onclick="showBloodType('B-')">B-</button>
+                    <button class=" blood-btn" onclick="showBloodType('AB-')">AB-</button>
+                    <button class=" blood-btn" onclick="showBloodType('O-')">O-</button>
+                </div>
+            
+                <!-- Blood Type Compatibility Cards -->
+                <div id="A+" class="card-container card mt-4 p-3 active ">
+                    <h3 class="text-danger">A+ Blood Type</h3>
+                    <p><strong>Donate Blood To:</strong> A+, AB+</p>
+                    <p><strong>Receive Blood From:</strong> A+, A-, O+, O-</p>
+                </div>
+            
+                <div id="B+" class="card-container card">
+                    <h3 class="text-danger">B+ Blood Type</h3>
+                    <p><strong>Donate Blood To:</strong> B+, AB+</p>
+                    <p><strong>Receive Blood From:</strong> B+, B-, O+, O-</p>
+                </div>
+            
+                <div id="AB+" class="card-container card mt-4 p-3">
+                    <h3 class="text-danger">AB+ Blood Type</h3>
+                    <p><strong>Donate Blood To:</strong> AB+</p>
+                    <p><strong>Receive Blood From:</strong> Everyone</p>
+                </div>
+            
+                <div id="O+" class="card-container card mt-4 p-3">
+                    <h3 class="text-danger">O+ Blood Type</h3>
+                    <p><strong>Donate Blood To:</strong> O+, A+, B+, AB+</p>
+                    <p><strong>Receive Blood From:</strong> O+, O-</p>
+                </div>
+            
+                <div id="A-" class="card-container card mt-4 p-3">
+                    <h3 class="text-danger">A- Blood Type</h3>
+                    <p><strong>Donate Blood To:</strong> A+, A-, AB+, AB-</p>
+                    <p><strong>Receive Blood From:</strong> A-, O-</p>
+                </div>
+            
+                <div id="B-" class="card-container card mt-4 p-3">
+                    <h3 class="text-danger">B- Blood Type</h3>
+                    <p><strong>Donate Blood To:</strong> B+, B-, AB+, AB-</p>
+                    <p><strong>Receive Blood From:</strong> B-, O-</p>
+                </div>
+            
+                <div id="AB-" class="card-container card mt-4 p-3">
+                    <h3 class="text-danger">AB- Blood Type</h3>
+                    <p><strong>Donate Blood To:</strong> AB+, AB-</p>
+                    <p><strong>Receive Blood From:</strong> AB-, A-, B-, O-</p>
+                </div>
+            
+                <div id="O-" class="card-container card mt-4 p-3">
+                    <h3 class="text-danger">O- Blood Type</h3>
+                    <p><strong>Donate Blood To:</strong> Everyone</p>
+                    <p><strong>Receive Blood From:</strong> O-</p>
+                </div>
+            </div>
+        </div>
+        <div class="table_img">
+            <img src="blood.webp" alt="">
         </div>
     </div>
 </div>
 <%- include('footer')%>
-<script src="script.js"></script>
+
+<script>
+    function showBloodType(type) {
+        document.querySelectorAll('.card-container').forEach(container => {
+            container.classList.remove('active');
+        });
+
+        document.getElementById(type).classList.add('active');
+    }
+    const slider = document.querySelector('.slider');
+const images = document.querySelectorAll('.slider img');
+const totalImages = images.length;
+const dotContainer = document.querySelector('.dot-container');
+let currentIndex = 0;
+let sliderWidth = 100 * totalImages; 
+
+slider.style.width = `${sliderWidth}%`;
+
+for (let i = 0; i < totalImages; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    dot.dataset.index = i; 
+    dotContainer.appendChild(dot);
+}
+
+const dots = document.querySelectorAll('.dot');
+
+
+function moveSlider() {
+    slider.style.transform = `translateX(-${(100 / totalImages) * currentIndex}%)`;
+    
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[currentIndex].classList.add('active');
+    slider.style.opacity='1';
+}
+
+
+function nextSlide() {
+    currentIndex++;
+    if (currentIndex >= totalImages) {
+        currentIndex = 0; 
+        slider.style.opacity='0';
+    }
+    moveSlider();
+}
+
+
+function prevSlide() {
+    currentIndex--;
+    if (currentIndex < 0) {
+        currentIndex = totalImages - 1; 
+    }
+    moveSlider();
+}
+
+
+setInterval(nextSlide, 6000);
+
+
+dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+        currentIndex = parseInt(e.target.dataset.index);
+        moveSlider();
+    });
+});
+moveSlider();
+</script>

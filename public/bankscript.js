@@ -1,3 +1,10 @@
+let date=new Date();
+let year = date.getFullYear();
+let month = String(date.getMonth() + 1).padStart(2, '0');
+let day = String(date.getDate()).padStart(2, '0');
+let minDate = year + '-' + month + '-' + day;
+document.querySelector("#License_Expiry").min=`${minDate}`;
+document.querySelector("#License_Issue").max=`${minDate}`;
 document.querySelector('form').addEventListener('submit', function(e){
     e.preventDefault();
     let Fields = [

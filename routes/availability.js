@@ -13,26 +13,30 @@ router.get("/dashboard", function (req, res) {
 });
 
 router.post("/dashboard/blood_stock", async function (req, res) {
-    let {state,district,blood_group}=req.body;
-    let sql =`select * from bank where state= ? and district= ? and Action ='accepted' `
-    bank_details=await new Promise(function (resolve, reject){
-        connection.query(sql,[state, district], function (err, result) {
-            if (err) reject(err);
-            else resolve(result);
-        });
-    })
-    sql=`select * from inventory where bank_id in (select bank_id from bank
-        where state= ? and district = ? and Action ='accepted') 
-        and bloodgroup= ?;`
-    inventory_details=await new Promise(function(resolve, reject) {
-        connection.query(sql,[state, district, blood_group], function (err, result) {
-            if (err) reject(err);
-            else resolve(result);
-        });
-    })
-    console.log(bank_details)
-    console.log(inventory_details)
-    res.redirect('/availability/dashboard');
+    try{
+        let {state,district,blood_group}=req.body;
+        let sql =`select * from bank where state= ? and district= ? and Action ='accepted' `
+        bank_details=await new Promise(function (resolve, reject){
+            connection.query(sql,[state, district], function (err, result) {
+                if (err) reject(err);
+                else resolve(result);
+            });
+        })
+        sql=`select * from inventory where bank_id in (select bank_id from bank
+            where state= ? and district = ? and Action ='accepted') 
+            and bloodgroup= ?;`
+        inventory_details=await new Promise(function(resolve, reject) {
+            connection.query(sql,[state, district, blood_group], function (err, result) {
+                if (err) reject(err);
+                else resolve(result);
+            });
+        })
+        res.redirect('/availability/dashboard');
+    }
+    catch(err){
+        console.log("error in blood stock",err)
+        res.redirect('/availability/dashboard');
+    }
 })
 
 module.exports = router;

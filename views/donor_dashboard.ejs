@@ -46,31 +46,15 @@
                             <tr>
                                 <th>Application Date</th>
                                 <th>Blood Bank Name</th>
-                                <th>Contact_No</th>
-                                <th>Email</th>
+                                <th>Contact Info.</th>
                                 <th>Address</th>
                                 <th>Status</th>
+                                <th>Donation Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% if (donationData.length > 0) { %>
-                                <% donationData.forEach(donation => { %>
-                                    <tr>
-                                        <td><%= donation.application_date.toString().substring(0,15) %></td>
-                                        <td><%= donation.Blood_Bank_Name %></td>
-                                        <td><%= donation.Contact_No %></td>
-                                        <td><%= donation.Email %></td>
-                                        <td><%= donation.Address %></td>
-                                        <td><%= donation.status %></td>
-                                        <td><a href='/donor/dashboard/drop_request/<%=user.id%>'><button class="accept-button">Drop Request !</button></a></td>
-                                    </tr>
-                                <% }) %>
-                            <% } else { %>
-                                <tr>
-                                    <td colspan="7">No upcoming donations scheduled.</td>
-                                </tr>
-                            <% } %>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -81,15 +65,13 @@
                     <thead>
                         <tr>
                             <th>Donation Date</th>
+                            <th>Blood Group</th>
                             <th>Blood Bank Name</th>
-                            <th>Quantity</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td colspan="4">No Donation Done Yet !</td>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </section>
@@ -214,6 +196,7 @@
             alert(msg);
         }
         let data=<%- JSON.stringify(bankdata||[])%>;
+        let donation=<%-JSON.stringify(donationData||[])%>;
         if(data.length>0)
         document.getElementsByClassName('bank_details')[0].querySelector('tbody').innerHTML=''
         for(let i=0; i<data.length; i++){
@@ -235,6 +218,98 @@
             cell.appendChild(A)
             row.appendChild(cell);
             document.getElementsByClassName('bank_details')[0].querySelector('tbody').appendChild(row);
+        }
+        if(donation.length ==0) {
+            let row=document.createElement('tr');
+            let cell=document.createElement('td');
+            cell.colSpan=7;
+            cell.textContent="You have not send any request to any blood bank yet !";
+            row.appendChild(cell);
+            document.querySelector(".upcoming_donation tbody").appendChild(row);
+        }
+        for(let i=0;i<donation.length;i++){
+            if(donation[i]['status']=='pending'||donation[i]['status']=='approved'){
+                let row=document.createElement('tr');
+                for(let key in donation[i]){
+                    if(key=='Blood_Bank_Name'||key=='Address'){
+                        let cell=document.createElement('td');
+                        cell.textContent=donation[i][key];
+                        row.appendChild(cell);
+                    }
+                    if(key=='Email'){
+                        let cell=document.createElement('td');
+                        cell.innerHTML="Email : "+donation[i]['Email']+"<br> Phone No. "+donation[i]['Contact_No'];
+                        row.appendChild(cell);
+                    }
+                    if(key=='application_date'){
+                        let cell=document.createElement('td');
+                        let date=new Date(donation[i][key]);
+                        cell.textContent=date.toDateString();
+                        row.appendChild(cell);
+                    }
+                }
+                let cell=document.createElement('td');
+                cell.textContent=donation[i]['status'];
+                row.appendChild(cell);
+                cell=document.createElement('td');
+                if(donation[i]['donation_date']==null) {
+                    cell.textContent="Not Approved";
+                }
+                else {
+                    let date=new Date(donation[i]['donation_date']);
+                    cell.textContent=date.toDateString();
+                }
+                row.appendChild(cell);
+                cell=document.createElement('td');
+                let a=document.createElement('a');
+                let btn=document.createElement('button');
+                a.href=`/donor/dashboard/drop_request/${donation[i]['donor_id']}`;
+                btn.className='accept-button';
+                btn.innerHTML="Drop Request!";
+                a.appendChild(btn);
+                cell.appendChild(a);
+                row.appendChild(cell);
+                document.querySelector(".upcoming_donation tbody").appendChild(row);
+            }
+            if(donation[i]['status']=='completed'){
+                let row=document.createElement('tr');
+                for(let key in donation[i]){
+                    if(key=='donation_date'){
+                        let cell=document.createElement('td');
+                        let date=new Date(donation[i][key]);
+                        cell.textContent=date.toDateString();
+                        row.appendChild(cell);
+                    }
+                    if(key=='Blood_Bank_Name'||key=='blood_type'){
+                        let cell=document.createElement('td');
+                        cell.textContent=donation[i][key];
+                        row.appendChild(cell);
+                    }
+                }
+                
+                let cell=document.createElement('td');
+                cell.textContent=donation[i]['status'];
+                row.appendChild(cell);
+                document.querySelector("#donation-history tbody").appendChild(row);
+            }
+            if(donation[i]['status']=='rejected'){
+                let row=document.createElement('tr');
+                let cell=document.createElement('td');
+                cell.colSpan=7;
+                let btn=document.createElement('button');
+                btn.className='accept-button';
+                cell.innerHTML = "Note , your donation request was not accepted by " + donation[i]['Blood_Bank_Name'] + ".<br>But don’t worry! 🌟 You can still make a difference. Click 'OK' and submit a new request and help save lives! ";
+                btn.style.borderRadius="50%"
+                btn.innerHTML="OK";
+                btn.onclick=function(e){
+                    if(confirm("Are you sure you want to sure make new request ? ")){
+                        window.location.href = `/donor/dashboard/drop_request/${donation[i]['donor_id']}`;
+                    }
+                }
+                cell.appendChild(btn);
+                row.appendChild(cell);
+                document.querySelector(".upcoming_donation tbody").appendChild(row);
+            }
         }
         function showSection(sectionId) {
             const sections = document.querySelectorAll('section');

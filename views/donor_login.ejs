@@ -10,7 +10,7 @@
 
     .box {
         height: 60vh;
-        width: 60vw;
+        width: 50vw;
         display: flex;
         border-radius: 0.5rem;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
@@ -31,7 +31,7 @@
     .box img {
         height: 60vh;
         border-radius: 0.5rem 0rem 0rem 0.5rem;
-        width: 35vw;
+        width: 25vw;
     }
 
     .box div {
@@ -73,13 +73,13 @@
             <form action="/donor/login" method="post">
                 <div>
                     <h2>Donor Login</h2>
-                    <label for="username">Username: <span>*</span> <br>
+                    <label for="username">User Email: <span>*</span> <br>
                         <input type="text" placeholder="Enter Username" id="username" name="username" autocomplete="off" required>
                     </label>
                     <label for="password">Password: <span>*</span><br>
                         <input type="password" id="password" name="password" placeholder="password" required>
                     </label>
-                    <button>Login</button>
+                    <button>Login <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
                     <hr>
                     <p>Create Account :- <a href="http://localhost:3000/donor/signup">Register Now</a></p>
                 </div>

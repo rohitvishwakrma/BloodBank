@@ -171,7 +171,7 @@ router.post('/donation/approve/:donation_id', function(req, res) {
         res.redirect('/bank/dashboard');
     }
     catch(err){
-        console.log('error in bank admin accept donation');
+        console.log('error in bank admin accept donation',err);
         res.redirect('/bank/dashboard');
     }
 })
@@ -203,7 +203,7 @@ router.post("/dashboard/update/:bank_id",async function(req,res){
         res.redirect('/bank/dashboard')
     }
     catch(err){
-        console.log('error update profile of blood bank');
+        console.log('error update profile of blood bank',err);
         res.redirect('/bank/dashboard')
     }
 })
@@ -218,7 +218,7 @@ router.get("/dashboard/update_blood_group/:donor_id/:blood_group",function(req,r
         res.redirect('/bank/dashboard');
     }
     catch(err){
-        console.log('Error on update blood group on blood bank');
+        console.log('Error on update blood group on blood bank',err);
         res.redirect('/bank/dashboard');
     }
 })
@@ -241,8 +241,8 @@ router.get("/dashboard/donation_history/:donation_id/:bank_id/:donor_id",async f
             if(err)
                 throw err;
         })
-        sql ='update donation set status ="completed" where id =?'
-        connection.query(sql,[donation_id],function(err,result){
+        sql ='update donation set blood_type =?, status ="completed" where id =?'
+        connection.query(sql,[donor_data['bloodgroup'],donation_id],function(err,result){
             if(err)
                 throw err;
         })
@@ -266,14 +266,29 @@ router.get("/dashboard/donation_history/:donation_id/:bank_id/:donor_id",async f
         res.redirect("/bank/dashboard")
     }
     catch(err){
-        console.log(err);
+        console.log("error in donation_history table",err);
         res.redirect("/bank/dashboard")
     }
+})
+router.get("/dashboard/donation_history/reject_donor/:donation_id",function(req, res){
+    try{
+        let donation_id=req.params.donation_id;
+        let sql=`update donation set status="rejected" where id =?`;
+        connection.query(sql,[donation_id],function(err,result){
+            if(err) throw err;
+        });
+        res.redirect("/bank/dashboard")
+    }
+    catch(err){
+        console.log("error on update donation status",err);
+        res.redirect("/bank/dashboard")
+    }
+
 })
 
 router.get('/logout', function (req, res) {
     req.logout(function (err) {
-        if (err) console.log(err);
+        if (err) console.log("error in bank logout",err);
         res.redirect('/');
     });
 });

@@ -1,0 +1,253 @@
+<style>
+    .container {
+        min-height: 90vh;
+        display: flex;
+        padding: 5vh 0vh;
+        gap: 10vh;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f4f4f4;
+        flex-direction: column;
+    }
+    .box{
+        background-color: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 90vw;
+        height: 60vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 2vw;
+        flex-direction: column;
+    }
+    h2{
+        color: #c21313;
+        transform: scaleY(1.1);
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+    .search{
+        width: 85vw;
+        height: max-content;
+        border-radius: 0.5rem;
+        align-items: center;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .search h3{
+        width: 100%;
+    }
+    .search select,.search input{
+        width: 20vw;
+        height: 5vh;
+        padding: 0px 10px;
+        background-color: #e6f7ff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s ease;
+    }
+    .search select:focus,.search input:focus {
+        border-color: #5cb85c;
+        outline: none;
+    }
+    .search option{
+        color: rgba(0, 0, 0, 0.8);
+    }
+    .search h3{
+        border-radius: 0.5rem 0.5rem 0rem 0rem;
+        background-color:#BF222B ;
+        height: 5vh;
+        display: flex;
+        align-items: center;
+        padding-left: 1vw;
+        font-weight: 500;
+        letter-spacing: 1px;
+        color: white;
+    }
+    .search form{
+        border-radius: 0rem 0rem 0.5rem 0.5rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 10px;
+    }
+    .search div{
+        width: 100%;
+        height: 15vh;
+        padding: 2vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+    .show_details{
+        width: 90vw;
+        min-height: 20vh;
+        background-color: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+    }
+    .show_details th{
+        background-color: #BF222B;
+        width: 80vw;
+        color: white;
+        height: 6vh;
+    }
+    
+    .show_details td{
+        height: 7vh;
+        background-color:  #d0e9f9;
+        color: #333;
+        text-align: center;
+    }
+    button{
+        width: 6vw;
+        padding: 10px;
+        background-color: #c21313;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: .5rem;
+        cursor: pointer;
+    }
+    button:hover{
+        background-color: brown;
+    }
+</style>
+<%-include('header')%>
+<div class="container">
+    <div class="box">
+        <h2>Blood Donation Camp Time Table</h2>
+        <div class="search">
+            <h3>Search Camp Timetable</h3>
+            <form action="/camp/searchCamp/findDetails" method="post">
+                <div>
+                    <select name="state" id="state" required>
+                        <option value="">Select State</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    </select>
+                    <select name="district" id="district" required>
+                        <option value="">Select a District</option>
+                        <option value="Agar Malwa">Agar Malwa</option>
+                        <option value="Alirajpur">Alirajpur</option>
+                        <option value="Anuppur">Anuppur</option>
+                        <option value="Ashok Nagar">Ashok Nagar</option>
+                        <option value="Balaghat">Balaghat</option>
+                        <option value="Barwani">Barwani</option>
+                        <option value="Betul">Betul</option>
+                        <option value="Bhind">Bhind</option>
+                        <option value="Bhopal">Bhopal</option>
+                        <option value="Burhanpur">Burhanpur</option>
+                        <option value="Chhatarpur">Chhatarpur</option>
+                        <option value="Chhindwara">Chhindwara</option>
+                        <option value="Damoh">Damoh</option>
+                        <option value="Datia">Datia</option>
+                        <option value="Dewas">Dewas</option>
+                        <option value="Dhar">Dhar</option>
+                        <option value="Dindori">Dindori</option>
+                        <option value="Guna">Guna</option>
+                        <option value="Gwalior">Gwalior</option>
+                        <option value="Harda">Harda</option>
+                        <option value="Hoshangabad">Hoshangabad</option>
+                        <option value="Indore">Indore</option>
+                        <option value="Jabalpur">Jabalpur</option>
+                        <option value="Jhabua">Jhabua</option>
+                        <option value="Katni">Katni</option>
+                        <option value="Khandwa">Khandwa</option>
+                        <option value="Khargone">Khargone</option>
+                        <option value="Mandla">Mandla</option>
+                        <option value="Mandsaur">Mandsaur</option>
+                        <option value="Morena">Morena</option>
+                        <option value="Narsinghpur">Narsinghpur</option>
+                        <option value="Neemuch">Neemuch</option>
+                        <option value="Panna">Panna</option>
+                        <option value="Rajgarh">Rajgarh</option>
+                        <option value="Ratlam">Ratlam</option>
+                        <option value="Rewa">Rewa</option>
+                        <option value="Sagar">Sagar</option>
+                        <option value="Satna">Satna</option>
+                        <option value="Sehore">Sehore</option>
+                        <option value="Shahdol">Shahdol</option>
+                        <option value="Shajapur">Shajapur</option>
+                        <option value="Sheopur">Sheopur</option>
+                        <option value="Sidhi">Sidhi</option>
+                        <option value="Singrauli">Singrauli</option>
+                        <option value="Tikamgarh">Tikamgarh</option>
+                        <option value="Ujjain">Ujjain</option>
+                        <option value="Umaria">Umaria</option>
+                        <option value="Vidisha">Vidisha</option>
+                    </select>
+                    <input type="date" id="date" name="camp_date" required>
+                </div>
+                <button>Search</button>
+            </form>
+        </div>
+    </div>
+    <div class="show_details">
+        <table>
+            <thead>
+               <tr>
+                <th>S.No.</th>
+                <th>Category</th>
+                <th>Camp Name</th>
+                <th>Contact Info.</th>
+                <th>Camp Date</th>
+                <th>Address</th>
+                <th>State</th>
+                <th>District</th>
+                <th>Time</th>
+               </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>        
+    </div>
+</div>
+<script>
+    let date=new Date();
+    let year = date.getFullYear();
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    let day = String(date.getDate()).padStart(2, '0');
+    let minDate = year + '-' + month + '-' + day;
+    document.querySelector("#date").setAttribute("min",minDate);
+    let camp=<%-JSON.stringify(camp_details||[])%>;
+    if(camp.length ==0){
+        let row=document.createElement("tr");
+        let cell=document.createElement('td');
+        cell.textContent="No Records Found";
+        cell.colSpan=9;
+        row.appendChild(cell);
+        document.querySelector('.show_details tbody').appendChild(row);
+    }
+    for(let i=0;i<camp.length;i++){
+        console.log(camp[i])
+        let row=document.createElement('tr');
+        let cell=document.createElement('td');
+        cell.textContent=(i+1);
+        row.appendChild(cell);
+        for(let key in camp[i]){
+            if(key=='organization_type'||key=='camp_name'||key=='organizer_email_id'||key=='camp_date'||key=='camp_address'||key=='state'||key=='district'||key=='start_time'){
+                let cell=document.createElement('td');
+                if(key=='organizer_email_id'){
+                    cell.innerHTML="Email : "+camp[i][key]+"<br>"+"Phone No. : "+camp[i]['organizer_mobile_no'];
+                }
+                else if(key=='start_time'){
+                    cell.innerHTML=camp[i][key]+" - "+camp[i]['end_time'];
+                }
+                else if(key=='camp_date'){
+                    cell.textContent=new Date(camp[i][key]).toDateString();
+                }
+                else{
+                    cell.textContent=camp[i][key];
+                }
+                row.appendChild(cell);
+            }
+        }
+        document.querySelector('.show_details tbody').appendChild(row);
+    }
+</script>
+<%-include('footer')%>

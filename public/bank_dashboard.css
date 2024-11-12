@@ -52,15 +52,24 @@ a{
     text-decoration: none;
 }
 th{
-    background-color: #BF222B;
+    background-color: #2a3e52;
     width: 80vw;
     color: white;
     height: 6vh;
 }
-
+tbody{
+    perspective: 1000px;
+}
+tr:hover{
+    transform: translateZ(2px);
+    transform-origin: center;
+}
+tr:hover td{
+    background-color: lightskyblue;
+}
 td{
     height: 7vh;
-    background-color:  #d0e9f9;
+    background-color:lightblue;
     color: #333;
     text-align: center;
 }
@@ -199,5 +208,25 @@ select:focus {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+.dashboard_nav{
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav_heading{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: #BF222B;
+}
+.dashboard_deatils{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 

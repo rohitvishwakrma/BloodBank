@@ -77,14 +77,10 @@ body{
     color: black;
 }
 .title_part ul li:hover{
-    color: red;
-    transform: translateX(7px);
+    color:white;
+    background-color: #007bff80;
 }
-.title_part ul li a:hover{
-    color: red;
-    transform: translateX(7px);
-    text-decoration: 0.1rem underline  ;
-}
+
 .title_part ul{
     height: max-content;
     width: 16vw;
