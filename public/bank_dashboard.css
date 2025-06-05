@@ -82,7 +82,7 @@ td{
     overflow: auto;
 }
 .accept-button{
-    background-color: #28a745; /* Green for Accept */
+    background-color: #28a745; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -96,7 +96,7 @@ td{
     background-color: #218838;
 }
 .reject-button {
-    background-color: #dc3545; /* Red for Reject */
+    background-color: #dc3545; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -107,7 +107,7 @@ td{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 .reject-button:hover {
-    background-color: #c82333; /* Darker red */
+    background-color: #c82333;
 }
 input {
     width: 20vw;
@@ -123,19 +123,19 @@ input:focus {
     outline: none;
 }
 .button {
-    background-color: #5a9; /* Subtle green */
+    background-color: #5a9;
     color: white;
     border: none;
-    padding: 10px 20px; /* Smaller padding */
-    font-size: 14px; /* Slightly smaller font */
-    border-radius: 4px; /* Softer corners */
+    padding: 10px 20px; 
+    font-size: 14px;
+    border-radius: 4px; 
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s ease-in-out;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 .button:hover {
-    background-color: #499; /* Darker green on hover */
+    background-color: #499;
 }
 .cell_input{
     width: 100%;

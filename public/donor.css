@@ -162,7 +162,7 @@ a{
     background-color: #c0392b;
 }
 .accept-button{
-    background-color: #28a745; /* Green for Accept */
+    background-color: #28a745; 
     color: white;
     border: none;
     border-radius: 5px;

@@ -3,25 +3,24 @@
 <head>
     <title>Google Maps API Example</title>
     <style>
-        /* Set the size of the map */
         #map {
-            height: 400px; /* Set the height of the map */
-            width: 100%;   /* Set the width of the map */
+            height: 400px; 
+            width: 100%;   
         }
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgGKM3amjAaVGP2cwiBt1wyMNgE6Ok3jg"></script>
     <script>
         function initMap() {
-            // The location of your desired coordinates
+           
             const location = { lat: 23.259933, lng: 77.412613 };
 
-            // Create a map centered at the location
+        
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 8,
                 center: location,
             });
 
-            // Place a marker on the map
+         
             const marker = new google.maps.Marker({
                 position: location,
                 map: map,

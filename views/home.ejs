@@ -6,7 +6,7 @@
         perspective: 100px;
     }
     .card-container {
-        display: none; /* Hide cards by default */
+        display: none; 
         background-color: #fff;
         border: 0px solid;
         height: 25vh;
@@ -14,10 +14,10 @@
         border-radius: 10px;
         box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
         margin-top: 20px;
-        padding: 20px; /* Hide cards by default */
+        padding: 20px;
     }
     .card-container.active {
-        display: block; /* Show only the active card */
+        display: block; 
     }
     .text-center{
         display: flex;
@@ -76,20 +76,20 @@
         flex-direction: column;
         justify-content: space-between;
     }
-    /* Container for the slider */
+    
     .slider_container {
         width: 100vw;
-        height: 70vh; /* Set a height for the slider */
+        height: 70vh; 
         overflow: hidden;
         position: relative;
     }
 
-    /* Slider holds the images */
+    
     .slider {
         display: flex;
         width: 100vw;
-        height: 70vh; /* 3 images, each 100% of container */
-        transition: transform 1s ease-in-out; /* Smooth transition */
+        height: 70vh;
+        transition: transform 1s ease-in-out;
     }
 
    
@@ -99,7 +99,7 @@
         object-fit: cover; 
     }
 
-    /* Dot navigation */
+  
     .dot-container {
         position: absolute;
         bottom: 10px;
@@ -136,7 +136,7 @@
         <img src="header9.png" alt="">
     </div>
     <div class="dot-container">
-        <!-- Dot buttons will be created here dynamically -->
+       
     </div>
 </div>
 <div class="link_container">
@@ -161,7 +161,7 @@
         <div class="table_box">
             <div class="containermy-4">
                 <h2 class="text-center mb-4">Compatible Blood Type Donors</h2>
-                <!-- Blood Type Buttons -->
+                
                 <div class="text-center">
                     <button class=" blood-btn" onclick="showBloodType('A+')">A+</button>
                     <button class=" blood-btn" onclick="showBloodType('B+')">B+</button>
@@ -173,7 +173,7 @@
                     <button class=" blood-btn" onclick="showBloodType('O-')">O-</button>
                 </div>
             
-                <!-- Blood Type Compatibility Cards -->
+                
                 <div id="A+" class="card-container card mt-4 p-3 active ">
                     <h3 class="text-danger">A+ Blood Type</h3>
                     <p><strong>Donate Blood To:</strong> A+, AB+</p>
@@ -239,60 +239,60 @@
         document.getElementById(type).classList.add('active');
     }
     const slider = document.querySelector('.slider');
-const images = document.querySelectorAll('.slider img');
-const totalImages = images.length;
-const dotContainer = document.querySelector('.dot-container');
-let currentIndex = 0;
-let sliderWidth = 100 * totalImages; 
+    const images = document.querySelectorAll('.slider img');
+    const totalImages = images.length;
+    const dotContainer = document.querySelector('.dot-container');
+    let currentIndex = 0;
+    let sliderWidth = 100 * totalImages; 
 
-slider.style.width = `${sliderWidth}%`;
+    slider.style.width = `${sliderWidth}%`;
 
-for (let i = 0; i < totalImages; i++) {
-    const dot = document.createElement('div');
-    dot.classList.add('dot');
-    dot.dataset.index = i; 
-    dotContainer.appendChild(dot);
-}
-
-const dots = document.querySelectorAll('.dot');
-
-
-function moveSlider() {
-    slider.style.transform = `translateX(-${(100 / totalImages) * currentIndex}%)`;
-    
-    dots.forEach(dot => dot.classList.remove('active'));
-    dots[currentIndex].classList.add('active');
-    slider.style.opacity='1';
-}
-
-
-function nextSlide() {
-    currentIndex++;
-    if (currentIndex >= totalImages) {
-        currentIndex = 0; 
-        slider.style.opacity='0';
+    for (let i = 0; i < totalImages; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        dot.dataset.index = i; 
+        dotContainer.appendChild(dot);
     }
-    moveSlider();
-}
+
+    const dots = document.querySelectorAll('.dot');
 
 
-function prevSlide() {
-    currentIndex--;
-    if (currentIndex < 0) {
-        currentIndex = totalImages - 1; 
+    function moveSlider() {
+        slider.style.transform = `translateX(-${(100 / totalImages) * currentIndex}%)`;
+        
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[currentIndex].classList.add('active');
+        slider.style.opacity='1';
     }
-    moveSlider();
-}
 
 
-setInterval(nextSlide, 6000);
-
-
-dots.forEach(dot => {
-    dot.addEventListener('click', (e) => {
-        currentIndex = parseInt(e.target.dataset.index);
+    function nextSlide() {
+        currentIndex++;
+        if (currentIndex >= totalImages) {
+            currentIndex = 0; 
+            slider.style.opacity='0';
+        }
         moveSlider();
+    }
+
+
+    function prevSlide() {
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = totalImages - 1; 
+        }
+        moveSlider();
+    }
+
+
+    setInterval(nextSlide, 6000);
+
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+            currentIndex = parseInt(e.target.dataset.index);
+            moveSlider();
+        });
     });
-});
-moveSlider();
+    moveSlider();
 </script>

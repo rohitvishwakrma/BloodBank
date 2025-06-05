@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Rakt Daan</title>
     <link rel="shortcut icon" href="../blood.svg" type="image/x-icon">
     <link rel="stylesheet" href="donor.css">
 </head>
+
 <body>
     <div class="container">
         <div class="sidebar">
@@ -17,26 +21,35 @@
                 <li onclick="showSection('donation-history')">Donation History</li>
                 <li onclick="showSection('donation-repository')">Donation Request</li>
                 <li onclick="showSection('profile')">Profile</li>
-                <a href="/donor/logout"><li>Logout</li></a>
+                <a href="/donor/logout">
+                    <li>Logout</li>
+                </a>
             </ul>
         </div>
         <div class="content">
             <section id="dashboard" class="active">
                 <div class="dashboard_nav">
-                    <h2>Welcome, <%=user.name%></h2>
+                    <h2>Welcome, <%=user.name%>
+                    </h2>
                     <div class="nav_heading">
-                        <p id="aadharBox">Aadhar No. <%=user.aadhar.toString().replace(/(\d{4})(?=\d)/g, '$1 - ').trim()%></p>
+                        <p id="aadharBox">Aadhar No. <%=user.aadhar.toString().replace( /(\d{4})(?=\d)/g, '$1 - '
+                                ).trim()%>
+                        </p>
                         <p id="last_login"></p>
                     </div>
                 </div>
                 <div class="overview">
                     <div class="overview-card">
                         <h3>Blood Type</h3>
-                        <p><%=user.bloodgroup%></p>
+                        <p>
+                            <%=user.bloodgroup%>
+                        </p>
                     </div>
                     <div class="overview-card">
                         <h3>Total Donations</h3>
-                        <p><%=user.total_donation%></p>
+                        <p>
+                            <%=user.total_donation%>
+                        </p>
                     </div>
                 </div>
                 <div class="upcoming_donation">
@@ -54,7 +67,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -71,7 +84,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                     </tbody>
                 </table>
             </section>
@@ -150,7 +163,7 @@
                             <th>Address</th>
                             <th>Action</th>
                         </thead>
-                        <tbody>  
+                        <tbody>
                             <tr>
                                 <td colspan="6">No Blood Bank Available Here!</td>
                             </tr>
@@ -159,182 +172,211 @@
                 </div>
             </section>
             <section id="profile">
-                
-                    <form action="/donor/dashboard/update/<%=user.id%>" id="update_profile" method="post">
-                        <label for="Email">Email <br><br>
-                            <input type="text" name="email" value="<%=user.email%>" required autocomplete="none">
+
+                <form action="/donor/dashboard/update/<%=user.id%>" id="update_profile" method="post">
+                    <label for="Email">Email <br><br>
+                        <input type="text" name="email" value="<%=user.email%>" required autocomplete="none">
+                    </label>
+                    <label for="name">Name <br> <br>
+                        <input type="text" name="name" value="<%=user.name%>" required autocomplete="none">
+                    </label>
+                    <label for="age">Moblie No. <br><br>
+                        <input type="text" name="phone" value="<%=user.phone%>" maxlength="10" required
+                            autocomplete="none">
+                    </label>
+                    <label for="address">Address <br><br>
+                        <input type="text" name="address" value="<%=user.address%>" required autocomplete="none">
+                    </label><br>
+                    <span><label for="">Change Password</label> <i class="fa-solid fa-toggle-off"
+                            onclick="change()"></i></span>
+                    <div class="password_box" id="password_active">
+                        <label for="password">
+                            <input type="text" id="password" name="password" placeholder="Enter new Password"
+                                autocomplete="none">
+                        </label><br><br>
+                        <label for="confrim_password">
+                            <input type="text" id="comfirm_password" name="re_password" placeholder="Comfirm password"
+                                autocomplete="none">
                         </label>
-                        <label for="name">Name <br> <br>
-                            <input type="text" name="name" value="<%=user.name%>" required autocomplete="none">
-                        </label>
-                        <label for="age">Moblie No. <br><br>
-                            <input type="text" name="phone" value="<%=user.phone%>" maxlength="10" required autocomplete="none">
-                        </label>
-                        <label for="address">Address <br><br>
-                            <input type="text" name="address" value="<%=user.address%>" required autocomplete="none">
-                        </label><br>
-                        <span><label for="">Change Password</label> <i class="fa-solid fa-toggle-off" onclick="change()"></i></span>
-                        <div class="password_box" id="password_active">
-                            <label for="password">
-                                <input type="text" id="password" name="password"  placeholder="Enter new Password" autocomplete="none">
-                            </label><br><br>
-                            <label for="confrim_password">
-                                <input type="text" id="comfirm_password" name="re_password" placeholder="Comfirm password" autocomplete="none">
-                            </label>
-                        </div>
-                        <button class="accept-button">Update Profile</button>
-                    </form>
-        
+                    </div>
+                    <button class="accept-button">Update Profile</button>
+                </form>
+
             </section>
         </div>
     </div>
     <script>
-        let date=new Date();
-        document.getElementById('last_login').innerHTML ="Last Login : "+ date.toDateString()+" "+date.toTimeString().toString().substring(0,8);
-        let msg=<%-JSON.stringify(message||[])%>;
-        if(msg&&msg.length>0){
-            alert(msg);
+        let date = new Date();
+        document.getElementById( 'last_login' ).innerHTML = "Last Login : " + date.toDateString() + " " + date.toTimeString().toString().substring( 0, 8 );
+        let msg = <% - JSON.stringify( message || "" ) %>;
+        if ( msg && msg.length > 0 )
+        {
+            alert( msg );
         }
-        let data=<%- JSON.stringify(bankdata||[])%>;
-        let donation=<%-JSON.stringify(donationData||[])%>;
-        if(data.length>0)
-        document.getElementsByClassName('bank_details')[0].querySelector('tbody').innerHTML=''
-        for(let i=0; i<data.length; i++){
-            const row = document.createElement('tr');
-            for(let key in data[i]){
-                if(key=='Blood_Bank_Name'||key=='Category'||key=='Email'||key=='Contact_No'||key=='Address'){
-                    let cell = document.createElement('td');   
-                    cell.textContent = data[i][key]  
-                    row.appendChild(cell);
+        let data = <% - JSON.stringify( bankdata || [] ) %>;
+        let donation = <% - JSON.stringify( donationData || [] ) %>;
+        if ( data.length > 0 )
+            document.getElementsByClassName( 'bank_details' )[ 0 ].querySelector( 'tbody' ).innerHTML = ''
+        for ( let i = 0; i < data.length; i++ )
+        {
+            const row = document.createElement( 'tr' );
+            for ( let key in data[ i ] )
+            {
+                if ( key == 'Blood_Bank_Name' || key == 'Category' || key == 'Email' || key == 'Contact_No' || key == 'Address' )
+                {
+                    let cell = document.createElement( 'td' );
+                    cell.textContent = data[ i ][ key ]
+                    row.appendChild( cell );
                 }
             }
-            let cell=document.createElement('td');
-            let btn1=document.createElement('button');
-            let A=document.createElement('a');
-            A.href=`/donor/dashboard/donate/${data[i]['bank_id']}/<%=user.id%>`;
-            btn1.className='accept-button';
-            btn1.innerHTML="Donate Here!";
-            A.appendChild(btn1);
-            cell.appendChild(A)
-            row.appendChild(cell);
-            document.getElementsByClassName('bank_details')[0].querySelector('tbody').appendChild(row);
+            let cell = document.createElement( 'td' );
+            let btn1 = document.createElement( 'button' );
+            let A = document.createElement( 'a' );
+            A.href = `/donor/dashboard/donate/${ data[ i ][ 'bank_id' ] }/<%=user.id%>`;
+            btn1.className = 'accept-button';
+            btn1.innerHTML = "Donate Here!";
+            A.appendChild( btn1 );
+            cell.appendChild( A )
+            row.appendChild( cell );
+            document.getElementsByClassName( 'bank_details' )[ 0 ].querySelector( 'tbody' ).appendChild( row );
         }
-        if(donation.length ==0) {
-            let row=document.createElement('tr');
-            let cell=document.createElement('td');
-            cell.colSpan=7;
-            cell.textContent="You have not send any request to any blood bank yet !";
-            row.appendChild(cell);
-            document.querySelector(".upcoming_donation tbody").appendChild(row);
+        if ( donation.length == 0 )
+        {
+            let row = document.createElement( 'tr' );
+            let cell = document.createElement( 'td' );
+            cell.colSpan = 7;
+            cell.textContent = "You have not send any request to any blood bank yet !";
+            row.appendChild( cell );
+            document.querySelector( ".upcoming_donation tbody" ).appendChild( row );
         }
-        for(let i=0;i<donation.length;i++){
-            if(donation[i]['status']=='pending'||donation[i]['status']=='approved'){
-                let row=document.createElement('tr');
-                for(let key in donation[i]){
-                    if(key=='Blood_Bank_Name'||key=='Address'){
-                        let cell=document.createElement('td');
-                        cell.textContent=donation[i][key];
-                        row.appendChild(cell);
+        for ( let i = 0; i < donation.length; i++ )
+        {
+            if ( donation[ i ][ 'status' ] == 'pending' || donation[ i ][ 'status' ] == 'approved' )
+            {
+                let row = document.createElement( 'tr' );
+                for ( let key in donation[ i ] )
+                {
+                    if ( key == 'Blood_Bank_Name' || key == 'Address' )
+                    {
+                        let cell = document.createElement( 'td' );
+                        cell.textContent = donation[ i ][ key ];
+                        row.appendChild( cell );
                     }
-                    if(key=='Email'){
-                        let cell=document.createElement('td');
-                        cell.innerHTML="Email : "+donation[i]['Email']+"<br> Phone No. "+donation[i]['Contact_No'];
-                        row.appendChild(cell);
+                    if ( key == 'Email' )
+                    {
+                        let cell = document.createElement( 'td' );
+                        cell.innerHTML = "Email : " + donation[ i ][ 'Email' ] + "<br> Phone No. " + donation[ i ][ 'Contact_No' ];
+                        row.appendChild( cell );
                     }
-                    if(key=='application_date'){
-                        let cell=document.createElement('td');
-                        let date=new Date(donation[i][key]);
-                        cell.textContent=date.toDateString();
-                        row.appendChild(cell);
+                    if ( key == 'application_date' )
+                    {
+                        let cell = document.createElement( 'td' );
+                        let date = new Date( donation[ i ][ key ] );
+                        cell.textContent = date.toDateString();
+                        row.appendChild( cell );
                     }
                 }
-                let cell=document.createElement('td');
-                cell.textContent=donation[i]['status'];
-                row.appendChild(cell);
-                cell=document.createElement('td');
-                if(donation[i]['donation_date']==null) {
-                    cell.textContent="Not Approved";
+                let cell = document.createElement( 'td' );
+                cell.textContent = donation[ i ][ 'status' ];
+                row.appendChild( cell );
+                cell = document.createElement( 'td' );
+                if ( donation[ i ][ 'donation_date' ] == null )
+                {
+                    cell.textContent = "Not Approved";
                 }
-                else {
-                    let date=new Date(donation[i]['donation_date']);
-                    cell.textContent=date.toDateString();
+                else
+                {
+                    let date = new Date( donation[ i ][ 'donation_date' ] );
+                    cell.textContent = date.toDateString();
                 }
-                row.appendChild(cell);
-                cell=document.createElement('td');
-                let a=document.createElement('a');
-                let btn=document.createElement('button');
-                a.href=`/donor/dashboard/drop_request/${donation[i]['donor_id']}`;
-                btn.className='accept-button';
-                btn.innerHTML="Drop Request!";
-                a.appendChild(btn);
-                cell.appendChild(a);
-                row.appendChild(cell);
-                document.querySelector(".upcoming_donation tbody").appendChild(row);
+                row.appendChild( cell );
+                cell = document.createElement( 'td' );
+                let a = document.createElement( 'a' );
+                let btn = document.createElement( 'button' );
+                a.href = `/donor/dashboard/drop_request/${ donation[ i ][ 'donor_id' ] }`;
+                btn.className = 'accept-button';
+                btn.innerHTML = "Drop Request!";
+                a.appendChild( btn );
+                cell.appendChild( a );
+                row.appendChild( cell );
+                document.querySelector( ".upcoming_donation tbody" ).appendChild( row );
             }
-            if(donation[i]['status']=='completed'){
-                let row=document.createElement('tr');
-                for(let key in donation[i]){
-                    if(key=='donation_date'){
-                        let cell=document.createElement('td');
-                        let date=new Date(donation[i][key]);
-                        cell.textContent=date.toDateString();
-                        row.appendChild(cell);
+            if ( donation[ i ][ 'status' ] == 'completed' )
+            {
+                let row = document.createElement( 'tr' );
+                for ( let key in donation[ i ] )
+                {
+                    if ( key == 'donation_date' )
+                    {
+                        let cell = document.createElement( 'td' );
+                        let date = new Date( donation[ i ][ key ] );
+                        cell.textContent = date.toDateString();
+                        row.appendChild( cell );
                     }
-                    if(key=='Blood_Bank_Name'||key=='blood_type'){
-                        let cell=document.createElement('td');
-                        cell.textContent=donation[i][key];
-                        row.appendChild(cell);
-                    }
-                }
-                
-                let cell=document.createElement('td');
-                cell.textContent=donation[i]['status'];
-                row.appendChild(cell);
-                document.querySelector("#donation-history tbody").appendChild(row);
-            }
-            if(donation[i]['status']=='rejected'){
-                let row=document.createElement('tr');
-                let cell=document.createElement('td');
-                cell.colSpan=7;
-                let btn=document.createElement('button');
-                btn.className='accept-button';
-                cell.innerHTML = "Note , your donation request was not accepted by " + donation[i]['Blood_Bank_Name'] + ".<br>But don’t worry! 🌟 You can still make a difference. Click 'OK' and submit a new request and help save lives! ";
-                btn.style.borderRadius="50%"
-                btn.innerHTML="OK";
-                btn.onclick=function(e){
-                    if(confirm("Are you sure you want to sure make new request ? ")){
-                        window.location.href = `/donor/dashboard/drop_request/${donation[i]['donor_id']}`;
+                    if ( key == 'Blood_Bank_Name' || key == 'blood_type' )
+                    {
+                        let cell = document.createElement( 'td' );
+                        cell.textContent = donation[ i ][ key ];
+                        row.appendChild( cell );
                     }
                 }
-                cell.appendChild(btn);
-                row.appendChild(cell);
-                document.querySelector(".upcoming_donation tbody").appendChild(row);
+
+                let cell = document.createElement( 'td' );
+                cell.textContent = donation[ i ][ 'status' ];
+                row.appendChild( cell );
+                document.querySelector( "#donation-history tbody" ).appendChild( row );
+            }
+            if ( donation[ i ][ 'status' ] == 'rejected' )
+            {
+                let row = document.createElement( 'tr' );
+                let cell = document.createElement( 'td' );
+                cell.colSpan = 7;
+                let btn = document.createElement( 'button' );
+                btn.className = 'accept-button';
+                cell.innerHTML = "Note , your donation request was not accepted by " + donation[ i ][ 'Blood_Bank_Name' ] + ".<br>But don’t worry! You can still make a difference. Click 'OK' and submit a new request and help save lives! ";
+                btn.style.borderRadius = "50%"
+                btn.innerHTML = "OK";
+                btn.onclick = function ( e )
+                {
+                    if ( confirm( "Are you sure you want to sure make new request ? " ) )
+                    {
+                        window.location.href = `/donor/dashboard/drop_request/${ donation[ i ][ 'donor_id' ] }`;
+                    }
+                }
+                cell.appendChild( btn );
+                row.appendChild( cell );
+                document.querySelector( ".upcoming_donation tbody" ).appendChild( row );
             }
         }
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => section.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
+        function showSection ( sectionId )
+        {
+            const sections = document.querySelectorAll( 'section' );
+            sections.forEach( section => section.classList.remove( 'active' ) );
+            document.getElementById( sectionId ).classList.add( 'active' );
         }
-        function change() {
-            let classdata=document.getElementsByClassName('fa-solid')[0].classList;
-            classdata.toggle('fa-toggle-on');
-            classdata.toggle('fa-toggle-off');
-            document.getElementById('password_active').classList.toggle('password_box')
+        function change ()
+        {
+            let classdata = document.getElementsByClassName( 'fa-solid' )[ 0 ].classList;
+            classdata.toggle( 'fa-toggle-on' );
+            classdata.toggle( 'fa-toggle-off' );
+            document.getElementById( 'password_active' ).classList.toggle( 'password_box' )
         }
-        document.getElementById('update_profile').addEventListener('submit',function(e){
+        document.getElementById( 'update_profile' ).addEventListener( 'submit', function ( e )
+        {
             e.preventDefault();
-            if(password.value!=comfirm_password.value){
-                alert('Password and Comfirm Password do not match');
+            if ( password.value != comfirm_password.value )
+            {
+                alert( 'Password and Comfirm Password do not match' );
                 return;
             }
-            let con=confirm("Are you sure you want to proceed?");
-            if(con)
+            let con = confirm( "Are you sure you want to proceed?" );
+            if ( con )
                 this.submit();
             else
                 return
-            //code to update profile
-        })
+
+        } )
     </script>
 </body>
+
 </html>

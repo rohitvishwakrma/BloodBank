@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="../blood.svg" type="image/x-icon">
     <link rel="stylesheet" href="bank_dashboard.css">
     <style>
-        /* General Reset */
+        
         * {
             box-sizing: border-box;
             margin: 0;
@@ -16,7 +16,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Container Layout */
+       
         .container {
             display: flex;
             min-height: 100vh;
@@ -52,7 +52,7 @@
             color: inherit;
         }
         
-        /* Content Area */
+     
         .content {
             flex: 1;
             padding: 30px;
@@ -74,7 +74,7 @@
             margin-right: 5px;
         }
 
-        /* Overview Cards */
+     
         .dashboard-overview {
             width: 100%;
             height: 50vh;
@@ -554,15 +554,14 @@
                 this.submit();
             else
                 return
-            //code to update profile
+           
         })  
         document.addEventListener("DOMContentLoaded", function () {
-            // Display dynamic values from data
+          
             document.getElementById("total-blood-units").textContent = Object.values(inventory).reduce((a, b) => a + b, 0) + " units";
             document.getElementById("upcoming-donations").textContent = donation.filter(d => d.status === "approved").length;
             document.getElementById("pending-requests").textContent = donation.filter(d => d.status === "pending").length;
             
-            // Populate recent updates
             let updates = ["Inventory updated", "New donation request", "Profile updated"];
             let recentUpdates = document.getElementById("recent-updates");
             recentUpdates.innerHTML = updates.map(update => `<li>${update}</li>`).join("");
